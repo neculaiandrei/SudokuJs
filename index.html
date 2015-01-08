@@ -1,7 +1,361 @@
 <!DOCTYPE html>
 <html>
-    <head>
-    </head>
-    <body>
-    </body>
+<head>
+<link rel="stylesheet" type="text/css" href="style.css"/>
+</head>
+<body>
+<div class="container">
+	<h2 class="header">
+	<span>Medium</span>
+	<span>1:22</span>
+	</h2>
+	<table class="sudoku-table">
+	<tr>
+		<td>
+			<table>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell sudoku-cell-blocked">
+					<input type="text" maxlength="1" value="1" readonly/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			</table>
+		</td>
+		<td>
+			<table>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell sudoku-cell-blocked">
+					<input type="text" maxlength="1" value="1" readonly/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell sudoku-cell-blocked">
+					<input type="text" maxlength="1" value="1" readonly/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			</table>
+		</td>
+		<td>
+			<table>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell sudoku-cell-blocked">
+					<input type="text" maxlength="1" value="1" readonly/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell sudoku-cell-blocked">
+					<input type="text" maxlength="1" value="1" readonly/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			</table>
+		</td>
+		<td>
+			<table>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell sudoku-cell-blocked">
+					<input type="text" maxlength="1" value="1" readonly/>
+				</td>
+			</tr>
+			</table>
+		</td>
+		<td>
+			<table>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell sudoku-cell-blocked">
+					<input type="text" maxlength="1" value="1" readonly/>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td>
+			<table>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell sudoku-cell-blocked">
+					<input type="text" maxlength="1" value="1" readonly/>
+				</td>
+				<td class="sudoku-cell sudoku-cell-blocked">
+					<input type="text" maxlength="1" value="1" readonly/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			</table>
+		</td>
+		<td>
+			<table>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell sudoku-cell-blocked">
+					<input type="text" maxlength="1" value="1" readonly/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell sudoku-cell-blocked">
+					<input type="text" maxlength="1" value="1" readonly/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			</table>
+		</td>
+		<td>
+			<table>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell sudoku-cell-blocked">
+					<input type="text" maxlength="1" value="1" readonly/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+			</tr>
+			<tr>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell  ">
+					<input type="text" maxlength="1" value="1"/>
+				</td>
+				<td class="sudoku-cell sudoku-cell-blocked">
+					<input type="text" maxlength="1" value="1" readonly/>
+				</td>
+			</tr>
+			</table>
+		</td>
+	</tr>
+	</table>
+	<div class="button-container">
+		<button class="bg-white">Easy</button>
+		<button class="bg-yellow">Medium</button>
+		<button class="bg-red">Hard</button>
+		<button class="bg-green">Solve</button>
+	</div>
+</div>
+</body>
 </html>
