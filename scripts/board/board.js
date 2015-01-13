@@ -53,6 +53,20 @@ var Board = function (value) {
             CellsMapper.mapNumbersToCells(numbers, cells);
         },
         
+        initFromString = function (word) {
+            var numbers = [];
+            
+            for (var i = 0; i < 9; i++) {
+                numbers[i] = [];
+                for (var j = 0; j < 9; j++) {
+                    if(word[i*9+j] != '.') {
+                        numbers[i][j] = word[i*9+j];
+                    }
+                }
+            }
+            initFromNumbers(numbers);
+        },
+    
         init = function () {
             createEmptyCells();
             addSiblings();
@@ -65,6 +79,8 @@ var Board = function (value) {
                 initFromNumbers(value);
             } else if ($.type(value) == "object") {
                 initFromBoard(value);
+            } else if ($.type(value) == "string") {
+                initFromString(value);
             }
         };
     

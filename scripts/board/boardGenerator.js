@@ -62,7 +62,7 @@ var BoardGenerator = (function () {
             
             positions.shuffle();
             
-            emptyCells(solutions.getBoard(0), finalBoard, positions, 0, 30, 81);
+            emptyCells(solutions.getBoard(0), finalBoard, positions, 0, 24, 81);
             return finalBoard.getBoard(0);
     };
     

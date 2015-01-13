@@ -1,12 +1,18 @@
 var BoardSolver = (function () {
     
-    var findFirstEmptyCell = function (board) {
-            var emptyCell;
+    var findFirstEmptyCellWithFewestPossibilities = function (board) {
+            var emptyCell,
+                minPossibilities = 10;
             
             for (var i = 0; i < 9; i++) {
                 for (var j = 0; j < 9; j++) {
-                    if (!board.cells[i][j].getNumber()) {
-                        emptyCell = board.cells[i][j];
+                    
+                    var cell = board.cells[i][j];
+                    if (!cell.getNumber()) {
+                        if(cell.getPossibleNumbers().length < minPossibilities) {
+                            emptyCell = cell;
+                            minPossibilities = cell.getPossibleNumbers().length;
+                        }
                     }
                 }
             }
@@ -15,7 +21,7 @@ var BoardSolver = (function () {
         },
         
         solve = function (board, boardContainer) {
-            var cellToFill = findFirstEmptyCell(board);
+            var cellToFill = findFirstEmptyCellWithFewestPossibilities(board);
 			
             if (!cellToFill) {
                 
