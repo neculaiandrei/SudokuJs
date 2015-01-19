@@ -15,6 +15,11 @@ $(document).ready(function(){
         hardButton = $("#hard").click(function () {
             board = BoardGenerator.generate(BoardDifficulty.Hard);
             BoardBuilder.build(board);
+        }),
+        
+        solveButton = $("#solve").click(function () {
+            board = BoardSolver.solve(board)[0];
+            BoardBuilder.build(board);
         });
                                           
     BoardBuilder.build(board);
