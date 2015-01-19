@@ -3,18 +3,11 @@ var Cell = function () {
             numberOfReferences = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             siblings = [],
             
-            isPossibleNumber = function (number) {
-                if (numberOfReferences[number]==0) {
-                    return true;
-                }
-                return false;
-            },
-            
             getPossibleNumbers = function () {
                 var possibleNumbers = [];
                 
                 for (var i = 1; i <= 9; i++) {
-                    if (isPossibleNumber(i)) {
+                    if (numberOfReferences[i]==0) {
                         possibleNumbers.push(i);
                     }
                 }
@@ -40,15 +33,18 @@ var Cell = function () {
                 if(newNumber){
                     updateNumberOfReferences(newNumber, 1);
                 }
-                
                 number = newNumber;
             };
-    
+            
+            removeNumber = function () {
+                setNumber();
+            }
         return {
             numberOfReferences: numberOfReferences,
             getPossibleNumbers: getPossibleNumbers,
             siblings: siblings,
             getNumber: getNumber,
-            setNumber: setNumber
+            setNumber: setNumber,
+            removeNumber: removeNumber
         };
     };

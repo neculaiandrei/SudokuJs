@@ -1,5 +1,39 @@
 var BoardGenerator = (function () {
-    var fillFirstRowWithValues = function (board) {
+    var fullBoard,
+        finalBoard,
+        positions,
+        isStopped,
+        
+        generate = function (difficulty) {
+            isStopped = false;
+            
+            prepareFullBoard();
+            
+            initPositions();
+            positions.shuffle();
+            
+            emptyCells(0, difficulty, 81);
+            
+            return finalBoard;
+        },
+        
+        stop = function () {
+            isStopped = true;
+        }
+        
+        prepareFullBoard = function () {
+            var solutions = [],
+                emptyBoard = new Board();
+            
+            finalBoard = new Board();
+            
+            fillFirstRowWithValues(emptyBoard);
+            
+            BoardSolver.settings.numberSolutions = 1;
+            fullBoard = BoardSolver.solve(emptyBoard)[0];
+        },
+        
+        fillFirstRowWithValues = function (board) {
             var isCellFilled = false;
             for (var i = 0; i < 9; i++) {
                 var cellToFill = board.cells[0][i];
@@ -10,7 +44,7 @@ var BoardGenerator = (function () {
         },
         
         initPositions = function () {
-            var positions = [];
+            positions = [];
             for (var i = 0; i < 9; i++) {
                 for (var j = 0; j < 9; j++) {
                     positions[i*9+j] = {
@@ -19,52 +53,42 @@ var BoardGenerator = (function () {
                     };
                 }
             }
-            return positions;
         },
         
-        emptyCells = function (board, boardContainer, shuffledpositions, startIndex,  remainingNumberOfCells, currentNumberOfCells) {
+        emptyCells = function (startPositionIndex,  remainingNumberOfCells, currentNumberOfCells) {
+            
+            if (isStopped) {
+                return;
+            }
             
             if (remainingNumberOfCells == currentNumberOfCells) {
-                var finalBoard = new Board(board);
-                boardContainer.addBoard(finalBoard);
+                finalBoard = new Board(fullBoard);
                 return true;
             }
             
-            for (var i = startIndex; i < 81; i++) {
+            for (var i = startPositionIndex; i < 81; i++) {
                     
-                var position = shuffledpositions[i],
-                    cell = board.cells[position.row][position.column],
+                var position = positions[i],
+                    cell = fullBoard.cells[position.row][position.column],
                     cellNumber = cell.getNumber(),
-                    solutionContainer = BoardContainer(2);
+                    solutions = [];
 
-                cell.setNumber();
-                BoardSolver.solve(board, solutionContainer);
+                cell.removeNumber();
                 
-                if (solutionContainer.numberOfBoards() == 1) {
-                    if (emptyCells(board, boardContainer, shuffledpositions, i + 1, remainingNumberOfCells, currentNumberOfCells-1)) {
+                BoardSolver.settings.numberSolutions = 2;
+                
+                numberOfSolutions = BoardSolver.solve(fullBoard).length;
+                
+                if (numberOfSolutions == 1) {
+                    if (emptyCells(i + 1, remainingNumberOfCells, currentNumberOfCells-1)) {
                         cell.setNumber(cellNumber);
                         return true;
                     }
                 }
-
+                
                 cell.setNumber(cellNumber);
             }
-        }
-        
-        generate = function () {
-            var board = new Board(),
-                positions = initPositions(),
-                solutions = new BoardContainer(1),
-                finalBoard = new BoardContainer(1);
-
-            fillFirstRowWithValues(board);
-            BoardSolver.solve(board, solutions);
-            
-            positions.shuffle();
-            
-            emptyCells(solutions.getBoard(0), finalBoard, positions, 0, 24, 81);
-            return finalBoard.getBoard(0);
-    };
+        };
     
     return {
         generate: generate

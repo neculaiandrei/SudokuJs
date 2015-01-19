@@ -1,6 +1,23 @@
 var Board = function (value) {
     var cells,
         
+        init = function () {
+            createEmptyCells();
+            addSiblings();
+            
+            if (!value) {
+                return;
+            }
+            
+            if ($.type(value) == "array") {
+                initFromNumbers(value);
+            } else if ($.type(value) == "object") {
+                initFromBoard(value);
+            } else if ($.type(value) == "string") {
+                initFromString(value);
+            }
+        },
+        
         createEmptyCells = function () {
             cells = [];
             for (var i = 0; i < 9; i++) {
@@ -11,15 +28,25 @@ var Board = function (value) {
             }
         },
         
+        addSiblings = function () {
+            for (var i = 0; i < 9; i++) {
+                for (var j = 0; j < 9; j++) {
+                    addRowSiblings(cells[i][j], i);
+                    addColumnSiblings(cells[i][j], j);
+                    addSectionSiblings(cells[i][j], i, j);
+                }
+            }
+        },
+        
         addRowSiblings = function (cell, row) {
             for (var i = 0; i < 9; i++) {
-                    cell.siblings.push(cells[row][i]);
+                    cell.siblings.pushIfNotExists(cells[row][i]);
             }
         },
         
         addColumnSiblings = function (cell, column) {
             for (var i = 0; i < 9; i++) {
-                    cell.siblings.push(cells[i][column]);
+                    cell.siblings.pushIfNotExists(cells[i][column]);
             }
         },
         
@@ -29,17 +56,7 @@ var Board = function (value) {
             
             for (var i = row; i < row + 3; i++) {
                 for (var j = column; j < column + 3; j++) {
-                        cell.siblings.push(cells[i][j]);
-                }
-            }
-        },
-        
-        addSiblings = function () {
-            for (var i = 0; i < 9; i++) {
-                for (var j = 0; j < 9; j++) {
-                    addRowSiblings(cells[i][j], i);
-                    addColumnSiblings(cells[i][j], j);
-                    addSectionSiblings(cells[i][j], i, j);
+                        cell.siblings.pushIfNotExists(cells[i][j]);
                 }
             }
         },
@@ -65,23 +82,6 @@ var Board = function (value) {
                 }
             }
             initFromNumbers(numbers);
-        },
-    
-        init = function () {
-            createEmptyCells();
-            addSiblings();
-            
-            if (!value) {
-                return;
-            }
-            
-            if ($.type(value) == "array") {
-                initFromNumbers(value);
-            } else if ($.type(value) == "object") {
-                initFromBoard(value);
-            } else if ($.type(value) == "string") {
-                initFromString(value);
-            }
         };
     
     init();
