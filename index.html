@@ -1,34 +1,29 @@
 <!DOCTYPE html>
 <html>
+
 <head>
-    <link rel="stylesheet" type="text/css" href="styles/style.css"/>
+    <link rel="stylesheet" type="text/css" href="styles/style.css" />
 </head>
+
 <body>
-<div class="container">
-	<h2 class="header">
+    <div class="container">
+        <h2 class="header">
 	<span>Medium</span>
 	<span>1:22</span>
 	</h2>
 
-	<table class="sudoku-table">
+        <table class="sudoku-table">
 
-	</table>
-	<div class="button-container">
-		<button id="easy" class="bg-white">Easy</button>
-		<button id="medium" class="bg-yellow">Medium</button>
-		<button id="hard" class="bg-red">Hard</button>
-		<button id="solve" class="bg-green">Solve</button>
-	</div>
-</div>
-<script type="text/javascript" src="scripts/lib/jquery-2.1.3.min.js"></script>
-<script type="text/javascript" src="scripts/arrayExtensions.js"></script>
-<script type="text/javascript" src="scripts/cell/cell.js"></script>
-<script type="text/javascript" src="scripts/cell/cellsMapper.js"></script>
-<script type="text/javascript" src="scripts/board/board.js"></script>
-<script type="text/javascript" src="scripts/board/boardSolver.js"></script>
-<script type="text/javascript" src="scripts/board/boardDifficulty.js"></script>    
-<script type="text/javascript" src="scripts/board/boardGenerator.js"></script>
-<script type="text/javascript" src="scripts/game/boardBuilder.js"></script>
-<script type="text/javascript" src="scripts/main.js"></script>
+        </table>
+        <div class="button-container">
+            <button id="easy" class="bg-white">Easy</button>
+            <button id="medium" class="bg-yellow">Medium</button>
+            <button id="hard" class="bg-red">Hard</button>
+            <button id="solve" class="bg-green">Solve</button>
+        </div>
+    </div>
+    <script type="text/javascript" src="scripts/lib/jquery-2.1.3.min.js"></script>
+    <script type="text/javascript" data-main="scripts/main" src="scripts/lib/require.js"></script>
 </body>
+
 </html>

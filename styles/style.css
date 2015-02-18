@@ -3,7 +3,7 @@
     src: url('../fonts/Squares Bold Free.otf');
 }
 
-*{
+* {
     -webkit-touch-callout: none;
     -webkit-user-select: none;
     -khtml-user-select: none;
@@ -12,143 +12,122 @@
     user-select: none;
 }
 
-*::selection{
+*::selection {
     background: rgba(255, 255, 255, 0.5);
 }
 
-body{
+body {
     background: url('../images/background1.jpg');
-    
     font-family: Squares;
     color: white;
     text-align: center;
 }
 
-.container{
+.container {
     display: inline-block;
     position: relative;
-    
     text-align: left;
 }
 
-.header{
+.header {
     text-shadow: 2px 2px #000;
     margin: 20px 5px;
 }
 
-.header:after{
+.header:after {
     content: "";
     display: block;
     clear: both;
 }
 
-.header span:nth-of-type(1){
+.header span:nth-of-type(1) {
     float: left;
 }
 
-.header span:nth-of-type(2){
+.header span:nth-of-type(2) {
     float: right;
 }
 
-.sudoku-cell{
+.sudoku-cell {
     font-size: 16px;
     text-align: center;
-    
     background: rgba(255, 255, 255, 0.1);
-    
-    box-shadow: 0 2px 2px rgba(255, 255, 255, 0.2) inset,
-                0 4px 0 black,
-                0 -2px 2px rgba(255, 255, 255, 0.2) inset;
-    
+    box-shadow: 0 2px 2px rgba(255, 255, 255, 0.2) inset, 0 4px 0 black, 0 -2px 2px rgba(255, 255, 255, 0.2) inset;
     transition: all 0.25s;
 }
 
-.sudoku-cell-blocked{
+.sudoku-cell-blocked {
     background: rgba(255, 255, 255, 0.25);
-    
     box-shadow: 0 0 transparent;
 }
 
-.sudoku-cell input{
+.sudoku-cell input {
     width: 1.5em;
     border: 0;
     outline: 0;
-    
     background: transparent;
-    
     font-family: Squares;
     font-size: 16px;
-    
     color: white;
     text-align: center;
 }
 
-.button-container{
+.button-container {
     text-align: center;
 }
 
-button{
+button {
     border: 0;
     margin: 5px;
     outline: 0;
-    
     font-family: Squares;
     font-size: 16px;
-
     color: white;
     text-align: center;
-
-    box-shadow: 0 2px 2px rgba(255, 255, 255, 0.2) inset,
-            0 5px 0 black,
-            0 -2px 2px rgba(255, 255, 255, 0.2) inset;
+    box-shadow: 0 2px 2px rgba(255, 255, 255, 0.2) inset, 0 5px 0 black, 0 -2px 2px rgba(255, 255, 255, 0.2) inset;
     transition: all 0.25s;
 }
 
-button:active{
-    box-shadow: 0 2px 2px rgba(255, 255, 255, 0.2) inset,
-                0 2px 0 black,
-                0 -2px 2px rgba(255, 255, 255, 0.2) inset;
+button:active {
+    box-shadow: 0 2px 2px rgba(255, 255, 255, 0.2) inset, 0 2px 0 black, 0 -2px 2px rgba(255, 255, 255, 0.2) inset;
 }
 
-.bg-red{
+.bg-red {
     background: rgba(255, 20, 20, 0.25);
 }
 
-.bg-yellow{
+.bg-yellow {
     background: rgba(255, 255, 20, 0.25);
 }
 
-.bg-green{
+.bg-green {
     background: rgba(20, 255, 20, 0.25);
 }
 
-.bg-white{
+.bg-white {
     background: rgba(255, 255, 255, 0.25);
 }
 
-@media screen and (min-width: 480px){
-    .sudoku-cell{
+@media screen and (min-width: 480px) {
+    .sudoku-cell {
         width: 50px;
         height: 50px;
         min-width: 35px;
     }
-    
-    button{
+    button {
         width: 100px;
         height: 40px;
     }
 }
 
-@media screen and (max-width: 479px){
-    .sudoku-cell{
+@media screen and (max-width: 479px) {
+    .sudoku-cell {
         width: 35px;
         height: 35px;
         min-width: 20px;
     }
-    
-    button{
+    button {
         display: block;
-        
         width: 80%;
         margin-left: auto;
         margin-right: auto;

@@ -1,78 +1,99 @@
-var BoardSolver = (function () {
-    var settings = {
-            numberSolutions: 1,
-        },
-        solutions,
-        board,
-        isStopped,
-        
-        solve = function (boardToSolve) {
-            board = boardToSolve;
-            
-            isStopped = false;
-            
-            solutions = [];
-            
-            recursiveSolve();
-            
-            return solutions;
-        },
-        
-        stop = function () {
-            isStopped = true;
-        },
-        
-        recursiveSolve = function () {
-            
-            if (isStopped ) {
-                return;
-            }
-            
-            var cellToFill = findFirstEmptyCellWithFewestPossibilities();
-	
-            if (!cellToFill) {
-                var solution = new Board(board);
-                solutions.push(solution);
-                
-                return settings.numberSolutions == solutions.length;
-            }
-            
-            var possibleNumbers = cellToFill.getPossibleNumbers();
-            
-            for (var i = 0; i < possibleNumbers.length; i++) {
-                cellToFill.setNumber(possibleNumbers[i]);
-                if (recursiveSolve()) {
+define(['./board'], function (Board) {
+    var BoardSolver = (function (options) {
+        var settings,
+            solutions,
+            board,
+            isCancelled,
+
+            init = function () {
+                settings = options;
+                solutions = [];
+            },
+
+            solve = function (boardToSolve) {
+                board = boardToSolve;
+
+                isCancelled = false;
+
+                solutions = [];
+
+                recursiveSolve();
+
+                return solutions;
+            },
+
+            cancel = function () {
+                isCancelled = true;
+            },
+
+            recursiveSolve = function () {
+                var it,
+                    cellToFill,
+                    solution,
+                    possibleNumbers;
+
+                if (isCancelled) {
+                    return;
+                }
+
+                cellToFill = findFirstEmptyCellWithFewestPossibilities();
+
+                if (!cellToFill) {
+                    solution = new Board(board);
+                    solutions.push(solution);
+
+                    return settings.numberSolutions == solutions.length;
+                }
+
+                possibleNumbers = cellToFill.getPossibleNumbers();
+
+                for (it = 0; it < possibleNumbers.length; it++) {
+
+                    cellToFill.setNumber(possibleNumbers[it]);
+
+                    if (recursiveSolve()) {
+                        cellToFill.removeNumber();
+                        return true;
+                    }
+
                     cellToFill.removeNumber();
-                    return true;
-                };
-                
-                cellToFill.removeNumber();
+                }
             }
-        }
-        
+
         findFirstEmptyCellWithFewestPossibilities = function () {
-            var emptyCell,
+            var row,
+                column,
+                currentCell,
+                emptyCell,
                 minPossibilities = 10;
-            
-            for (var i = 0; i < 9; i++) {
-                for (var j = 0; j < 9; j++) {
-                    var cell = board.cells[i][j];
-                    
-                    if (!cell.getNumber()) {
-                        if(cell.getPossibleNumbers().length < minPossibilities) {
-                            emptyCell = cell;
-                            minPossibilities = cell.getPossibleNumbers().length;
+
+            for (row = 0; row < 9; row++) {
+                for (column = 0; column < 9; column++) {
+
+                    currentCell = board.cells[row][column];
+
+                    if (!currentCell.getNumber()) {
+                        if (currentCell.getPossibleNumbers().length < minPossibilities) {
+                            emptyCell = currentCell;
+                            minPossibilities = currentCell.getPossibleNumbers().length;
                         }
                     }
                 }
             }
-            
+
             return emptyCell;
         };
-    
-    return{
-        settings: settings,
-        solve: solve,
-        stop: stop
-    };
-})();
+
+        init();
+
+        return {
+            settings: settings,
+            solve: solve,
+            cancel: cancel
+        };
+    })({
+        numberOfSolutions: 1
+    });
+
+    return BoardSolver;
+});
