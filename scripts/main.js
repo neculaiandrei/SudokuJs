@@ -1,4 +1,4 @@
-require(['board/boardGenerator', 'board/boardSolver', 'game/boardBuilder', 'board/BoardDifficulty'],
+require(['board/boardGenerator', 'board/boardSolver', 'game/boardBuilder', 'board/boardDifficulty'],
     function (BoardGenerator, BoardSolver, BoardBuilder, BoardDifficulty) {
         $(document).ready(function () {
 
