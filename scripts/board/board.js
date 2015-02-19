@@ -1,4 +1,4 @@
-define(['cell/cellsMapper', 'cell/cell', 'utils/arrayExtensions'], function (CellsMapper, Cell) {
+define(['cell/cell', 'utils/arrayExtensions'], function (Cell) {
 
     var Board = function (value) {
         var cells,
@@ -11,7 +11,7 @@ define(['cell/cellsMapper', 'cell/cell', 'utils/arrayExtensions'], function (Cel
                     return;
                 }
 
-                initializers[$.type(value)](value);
+                mappers[$.type(value)](value);
             },
 
             createEmptyCells = function () {
@@ -71,35 +71,28 @@ define(['cell/cellsMapper', 'cell/cell', 'utils/arrayExtensions'], function (Cel
                 }
             },
 
-            initFromNumbers = function (numbers) {
-                CellsMapper.mapNumbersToCells(numbers, cells);
+            mapFromArray = function (array) {
+                var it;
+                
+                for (it = 0; it < 81; it++) {
+                    cells[Math.floor(it/9)][it%9] = array[it];
+                }
             },
 
-            initFromBoard = function (board) {
-                var numbers = CellsMapper.mapCellsToNumbers(board.cells);
-                CellsMapper.mapNumbersToCells(numbers, cells);
-            },
-
-            initFromString = function (word) {
+            mapFromBoard = function (board) {
                 var row,
-                    column,
-                    numbers = [];
-
+                    column;
+                    
                 for (row = 0; row < 9; row++) {
-                    numbers[row] = [];
                     for (column = 0; column < 9; column++) {
-                        if (word[row * 9 + column] != '.') {
-                            numbers[row][column] = word[row * 9 + column];
-                        }
+                        cells[row][column].setNumber(board.cells[row][column].getNumber());
                     }
                 }
-                initFromNumbers(numbers);
             },
-
-            initializers = {
-                "array": initFromNumbers,
-                "object": initFromBoard,
-                "string": initFromString
+            
+             mappers = {
+                "array": mapFromArray,
+                "object": mapFromBoard
             };
 
         init();

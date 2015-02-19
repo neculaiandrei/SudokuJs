@@ -2,7 +2,7 @@ define(function () {
 
     var Cell = function () {
         var number,
-            numberOfReferences = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            references = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
             siblings = [],
 
             getPossibleNumbers = function () {
@@ -10,7 +10,7 @@ define(function () {
                     possibleNumbers = [];
 
                 for (number = 1; number <= 9; number++) {
-                    if (numberOfReferences[number] == 0) {
+                    if (references[number] == 0) {
                         possibleNumbers.push(number);
                     }
                 }
@@ -18,9 +18,9 @@ define(function () {
                 return possibleNumbers;
             },
 
-            updateNumberOfReferences = function (number, reference) {
+            updateReferences = function (number, value) {
                 for (var i = 0; i < siblings.length; i++) {
-                    siblings[i].numberOfReferences[number] += reference;
+                    siblings[i].references[number] += value;
                 }
             },
 
@@ -30,12 +30,13 @@ define(function () {
 
             setNumber = function (newNumber) {
                 if (number) {
-                    updateNumberOfReferences(number, -1);
+                    updateReferences(number, -1);
                 }
 
                 if (newNumber) {
-                    updateNumberOfReferences(newNumber, 1);
+                    updateReferences(newNumber, 1);
                 }
+                
                 number = newNumber;
             },
 
@@ -44,7 +45,7 @@ define(function () {
             };
 
         return {
-            numberOfReferences: numberOfReferences,
+            references: references,
             getPossibleNumbers: getPossibleNumbers,
             siblings: siblings,
             getNumber: getNumber,

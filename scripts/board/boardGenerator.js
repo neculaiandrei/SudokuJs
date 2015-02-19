@@ -4,22 +4,20 @@ define(['./boardSolver','./board'], function (BoardSolver, Board) {
         var fullBoard,
             finalBoard,
             positions,
-            isStopped,
+            isCancelled,
 
+            cancel = function () {
+                isCancelled = true;
+            },
+            
             generate = function (difficulty) {
-                isStopped = false;
+                isCancelled = false;
                 prepareFullBoard();
-
                 initPositions();
                 positions.shuffle();
-
                 emptyCells(0, difficulty, 81);
 
                 return finalBoard;
-            },
-
-            stop = function () {
-                isStopped = true;
             },
 
             prepareFullBoard = function () {
@@ -27,7 +25,6 @@ define(['./boardSolver','./board'], function (BoardSolver, Board) {
                     emptyBoard = new Board();
 
                 finalBoard = new Board();
-
                 fillFirstRowWithValues(emptyBoard);
 
                 BoardSolver.settings.numberSolutions = 1;
@@ -37,16 +34,11 @@ define(['./boardSolver','./board'], function (BoardSolver, Board) {
             fillFirstRowWithValues = function (board) {
                 var row,
                     column,
-                    isCellFilled = false,
-                    currentCell,
-                    possibleNumbers,
-                    randomPossibleNumber;
+                    currentCell;
 
                 for (column = 0; column < 9; column++) {
                     currentCell = board.cells[0][column];
-                    possibleNumbers = currentCell.getPossibleNumbers();
-                    randomPossibleNumberNumber = possibleNumbers.getRandomValue();
-                    currentCell.setNumber(randomPossibleNumberNumber);
+                    currentCell.setNumber(currentCell.getPossibleNumbers().getRandomValue());
                 }
             },
 
@@ -65,36 +57,36 @@ define(['./boardSolver','./board'], function (BoardSolver, Board) {
                 }
             },
 
-            emptyCells = function (startPositionIndex, remainingNumberOfCells, currentNumberOfCells) {
+            emptyCells = function (start, remainingCellsCount, cellsCount) {
                 var index,
                     position,
                     cell,
-                    cellNumber;
+                    cellNumber,
+                    solutionsCount;
 
-                if (isStopped) {
+                if (isCancelled) {
                     return;
                 }
 
-                if (remainingNumberOfCells == currentNumberOfCells) {
+                if (remainingCellsCount == cellsCount) {
                     finalBoard = new Board(fullBoard);
                     return true;
                 }
 
-                for (index = startPositionIndex; index < 81; index++) {
+                for (index = start; index < 81; index++) {
 
                     position = positions[index],
-                        cell = fullBoard.cells[position.row][position.column],
-                        cellNumber = cell.getNumber(),
-                        solutions = [];
+                    cell = fullBoard.cells[position.row][position.column],
+                    cellNumber = cell.getNumber(),
 
                     cell.removeNumber();
 
                     BoardSolver.settings.numberSolutions = 2;
 
-                    numberOfSolutions = BoardSolver.solve(fullBoard).length;
+                    solutionsCount = BoardSolver.solve(fullBoard).length;
 
-                    if (numberOfSolutions == 1) {
-                        if (emptyCells(index + 1, remainingNumberOfCells, currentNumberOfCells - 1)) {
+                    if (solutionsCount == 1) {
+                        if (emptyCells(index + 1, remainingCellsCount, cellsCount - 1)) {
                             cell.setNumber(cellNumber);
                             return true;
                         }
@@ -105,6 +97,7 @@ define(['./boardSolver','./board'], function (BoardSolver, Board) {
             };
 
         return {
+            cancel: cancel,
             generate: generate
         }
     })();

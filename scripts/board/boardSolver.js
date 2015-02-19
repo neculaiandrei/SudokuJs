@@ -12,11 +12,8 @@ define(['./board'], function (Board) {
 
             solve = function (boardToSolve) {
                 board = boardToSolve;
-
                 isCancelled = false;
-
                 solutions = [];
-
                 recursiveSolve();
 
                 return solutions;
@@ -92,7 +89,7 @@ define(['./board'], function (Board) {
             cancel: cancel
         };
     })({
-        numberOfSolutions: 1
+        numberOfSolutions: 1 //default value
     });
 
     return BoardSolver;
