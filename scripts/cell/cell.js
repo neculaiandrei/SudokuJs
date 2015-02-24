@@ -1,16 +1,16 @@
 define(function () {
 
-    var Cell = function () {
+    var Cell = function (row, column, pubsub) {
         var number,
-            references = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
-            siblings = [],
-
+            appearances = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            obj = {},
+            
             getPossibleNumbers = function () {
                 var number,
                     possibleNumbers = [];
 
                 for (number = 1; number <= 9; number++) {
-                    if (references[number] == 0) {
+                    if (appearances[number] == 0) {
                         possibleNumbers.push(number);
                     }
                 }
@@ -18,23 +18,18 @@ define(function () {
                 return possibleNumbers;
             },
 
-            updateReferences = function (number, value) {
-                for (var i = 0; i < siblings.length; i++) {
-                    siblings[i].references[number] += value;
-                }
-            },
-
             getNumber = function () {
                 return number;
             },
 
             setNumber = function (newNumber) {
+                
                 if (number) {
-                    updateReferences(number, -1);
+                    pubsub.publish('numberChanged-' + row + column, [number, -1]);
                 }
 
                 if (newNumber) {
-                    updateReferences(newNumber, 1);
+                    pubsub.publish('numberChanged-' + row + column, [newNumber, 1]);
                 }
                 
                 number = newNumber;
@@ -42,16 +37,64 @@ define(function () {
 
             removeNumber = function () {
                 setNumber();
-            };
+            },
+            
+            handleChange = function (args) {
+                var number,
+                    value;
+                
+                number = args[0];
+                value = args[1];
+                
+                appearances[number] += value;
+            },
+                
+            subscribeRowChanges = function () {
+                var otherColumn;
+                
+                for (otherColumn = 0; otherColumn < 9; otherColumn++) {
+                    pubsub.subscribe('numberChanged-' + row + otherColumn, obj.handleChange);
+                }
+            },
+                
+            subscribeColumnChanges = function () {
+                var otherRow;
+                
+                for (otherRow = 0; otherRow < 9; otherRow++) {
+                    pubsub.subscribe('numberChanged-' + otherRow + column, obj.handleChange);
+                }
+            }, 
+            
+            subscribeBoxChanges = function () {
+                var boxRow,
+                    boxColumn,
+                    otherRow,
+                    otherColumn;
+                
+                boxRow = Math.floor(row / 3) * 3;
+                boxColumn = Math.floor(column / 3) * 3;
 
-        return {
-            references: references,
+                for (otherRow = boxRow; otherRow < boxRow + 3; otherRow++) {
+                    for (otherColumn = boxColumn; otherColumn < boxColumn + 3; otherColumn++) {
+                        pubsub.subscribe('numberChanged-' + otherRow + otherColumn, obj.handleChange);
+                    }
+                }
+            };
+        
+        obj = {
             getPossibleNumbers: getPossibleNumbers,
-            siblings: siblings,
             getNumber: getNumber,
             setNumber: setNumber,
-            removeNumber: removeNumber
+            removeNumber: removeNumber,
+            handleChange: handleChange
         };
+        
+        subscribeRowChanges();
+        subscribeColumnChanges();
+        subscribeBoxChanges();
+        
+        
+        return obj;
     };
 
     return Cell;

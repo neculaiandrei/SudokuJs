@@ -26,9 +26,10 @@ define(['./boardSolver','./board'], function (BoardSolver, Board) {
 
                 finalBoard = new Board();
                 fillFirstRowWithValues(emptyBoard);
-
+                
                 BoardSolver.settings.numberSolutions = 1;
                 fullBoard = BoardSolver.solve(emptyBoard)[0];
+                
             },
 
             fillFirstRowWithValues = function (board) {
@@ -75,9 +76,9 @@ define(['./boardSolver','./board'], function (BoardSolver, Board) {
 
                 for (index = start; index < 81; index++) {
 
-                    position = positions[index],
-                    cell = fullBoard.cells[position.row][position.column],
-                    cellNumber = cell.getNumber(),
+                    position = positions[index];
+                    cell = fullBoard.cells[position.row][position.column];
+                    cellNumber = cell.getNumber();
 
                     cell.removeNumber();
 

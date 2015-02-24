@@ -1,29 +1,58 @@
-require(['board/boardGenerator', 'board/boardSolver', 'game/boardBuilder', 'board/boardDifficulty'],
-    function (BoardGenerator, BoardSolver, BoardBuilder, BoardDifficulty) {
+require(['game/boardUIBuilder', 'game/sudokuWorker', 'board/boardDifficulty'],
+    function (BoardUIBuilder, SudokuWorker, BoardDifficulty) {
         $(document).ready(function () {
-
-            var board = BoardGenerator.generate(BoardDifficulty.Hard),
-
+      
+            var currentBoard,
+                
                 easyButton = $("#easy").click(function () {
-                    board = BoardGenerator.generate(BoardDifficulty.Easy);
-                    BoardBuilder.build(board);
+                    SudokuWorker.generate(BoardDifficulty.Easy, onGenerated);
+                    loader.fadeIn();
                 }),
 
                 mediumButton = $("#medium").click(function () {
-                    board = BoardGenerator.generate(BoardDifficulty.Medium);
-                    BoardBuilder.build(board);
+                    SudokuWorker.generate(BoardDifficulty.Medium, onGenerated);
+                    loader.fadeIn();
                 }),
 
                 hardButton = $("#hard").click(function () {
-                    board = BoardGenerator.generate(BoardDifficulty.Hard);
-                    BoardBuilder.build(board);
+                    SudokuWorker.generate(BoardDifficulty.Hard, onGenerated);
+                    loader.fadeIn();
+                }),
+                
+                retryButton = $("#retry").click(function () {
+                    SudokuWorker.abort();
+                    SudokuWorker.start();
+                    
+                    setTimeout(function () {
+                        SudokuWorker.generate(BoardDifficulty.Medium, onGenerated);
+                    }, 1000); //put a second delay for web worker to load
+                    loader.fadeIn();
                 }),
 
                 solveButton = $("#solve").click(function () {
-                    board = BoardSolver.solve(board)[0];
-                    BoardBuilder.build(board);
-                });
-
-            BoardBuilder.build(board);
+                    SudokuWorker.solve(currentBoard, onSolved);
+                    loader.fadeIn();
+                }),
+                
+                onGenerated = function (board) {
+                    currentBoard = board;
+                    BoardUIBuilder.build(currentBoard);
+                    loader.fadeOut();
+                },
+                
+                onSolved = function (board) {
+                    currentBoard = board;
+                    BoardUIBuilder.build(currentBoard);
+                    loader.fadeOut();
+                },
+                
+                loader = $("#loader-wrapper");
+            
+            SudokuWorker.start();
+            
+            setTimeout(function () {
+                SudokuWorker.generate(BoardDifficulty.Medium, onGenerated);
+            }, 1000); //put a second delay for web worker to load
+          
         });
     });

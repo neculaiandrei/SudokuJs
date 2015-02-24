@@ -108,6 +108,10 @@ button:active {
     background: rgba(255, 255, 255, 0.25);
 }
 
+.bg-blue {
+    background: rgba(0, 49, 102, 0.8);
+}
+
 @media screen and (min-width: 480px) {
     .sudoku-cell {
         width: 50px;
@@ -118,6 +122,64 @@ button:active {
         width: 100px;
         height: 40px;
     }
+}
+
+#loader-wrapper {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    
+    color: #003366;
+    background: white;
+}
+
+#loader {
+    display: block;
+    position: relative;
+    left: 50%;
+    top: 50%;
+    width: 250px;
+    height: 200px;
+    margin: -100px 0 0 -125px;
+    z-index: 1500;   
+}
+
+#loader table {
+    width: 100px;
+    height: 100px;
+    margin: 0 75px;
+
+    animation:spin-board 5s 1s ease-in-out alternate infinite;
+}
+
+#loader td {
+   animation:spin-cell 5s 1s ease-in-out alternate infinite;
+}
+
+@keyframes spin-board { 
+    0% { transform: rotate(0deg); transform:rotate(0deg); }
+    20% { transform: rotate(90deg); transform:rotate(90deg); }
+    30% { transform: rotate(90deg); transform:rotate(90deg); }
+    45% { transform: rotate(180deg); transform:rotate(180deg); }
+    55% { transform: rotate(180deg); transform:rotate(180deg); }
+    70% { transform: rotate(270deg); transform:rotate(270deg); }
+    80% { transform: rotate(270deg); transform:rotate(270deg); }
+    100% { transform: rotate(360deg); transform:rotate(360deg); }
+}
+
+
+@keyframes spin-cell { 
+    0% { transform: rotate(360deg); transform:rotate(360deg); }
+    20% { transform: rotate(270deg); transform:rotate(270deg); }
+    30% { transform: rotate(270deg); transform:rotate(270deg); }
+    45% { transform: rotate(180deg); transform:rotate(180deg); }
+    55% { transform: rotate(180deg); transform:rotate(180deg); }
+    70% { transform: rotate(90deg); transform:rotate(90deg); }
+    80% { transform: rotate(90deg); transform:rotate(90deg); }
+    100% { transform: rotate(0deg); transform:rotate(0deg); }
 }
 
 @media screen and (max-width: 479px) {
