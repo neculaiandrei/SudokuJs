@@ -1,4 +1,4 @@
-define(['board/board', 'board/BoardMapper'],
+define(['board/board', 'board/boardMapper'],
     function (Board, BoardMapper) {
         var SudokuWorker = (function (src) {
             var worker,
