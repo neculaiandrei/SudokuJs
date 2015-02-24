@@ -2,7 +2,7 @@ importScripts('../lib/require.min.js');
 
 require({
         baseUrl: "../"
-    }, ["require", "board/boardGenerator", "board/boardSolver", 'board/boardMapper', 'board/Board'],
+    }, ["require", "board/boardGenerator", "board/boardSolver", 'board/boardMapper', 'board/board'],
     function (require, BoardGenerator, BoardSolver, BoardMapper, Board) {
 
         self.onmessage = function (e) {
