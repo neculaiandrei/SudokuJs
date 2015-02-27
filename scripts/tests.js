@@ -24,7 +24,7 @@ var maps = [
     end_time;
 
 for (var i = 0; i < 20; i++) {
-    boards[i] = new Board(maps[i]);
+    boards[i] = Board(maps[i]);
 }
 
 start_time = Date.now();

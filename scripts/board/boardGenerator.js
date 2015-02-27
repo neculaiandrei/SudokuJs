@@ -16,15 +16,15 @@ define(['./boardSolver','./board'], function (BoardSolver, Board) {
                 initPositions();
                 positions.shuffle();
                 emptyCells(0, difficulty, 81);
-
+                
                 return finalBoard;
             },
 
             prepareFullBoard = function () {
                 var solutions = [],
-                    emptyBoard = new Board();
+                    emptyBoard = Board();
 
-                finalBoard = new Board();
+                finalBoard = Board();
                 fillFirstRowWithValues(emptyBoard);
                 
                 BoardSolver.settings.numberSolutions = 1;
@@ -70,7 +70,7 @@ define(['./boardSolver','./board'], function (BoardSolver, Board) {
                 }
 
                 if (remainingCellsCount == cellsCount) {
-                    finalBoard = new Board(fullBoard);
+                    finalBoard = Board(fullBoard);
                     return true;
                 }
 

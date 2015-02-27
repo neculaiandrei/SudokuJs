@@ -182,6 +182,26 @@ button:active {
     100% { transform: rotate(0deg); transform:rotate(0deg); }
 }
 
+
+#modalDialog {
+	position: fixed;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	left: 0;
+    
+    display: none;
+	z-index: 1000;
+}
+
+#modalDialog > div {
+	width: 200px;
+	position: relative;
+	margin: 10px auto;
+	padding: 10px;
+	background: rgba(0,0,0,0.7);
+}
+
 @media screen and (max-width: 479px) {
     .sudoku-cell {
         width: 35px;

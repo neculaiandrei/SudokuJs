@@ -35,7 +35,7 @@ define(['board/board', 'board/boardMapper'],
                         data;
 
                     data = e.data;
-                    board = new Board();
+                    board = Board();
                     BoardMapper.mapFromString(board, data.board);
 
                     switch (data.cmd) {

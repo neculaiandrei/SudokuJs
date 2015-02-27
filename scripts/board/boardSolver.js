@@ -36,7 +36,7 @@ define(['./board'], function (Board) {
                 cellToFill = findFirstEmptyCellWithFewestPossibilities();
 
                 if (!cellToFill) {
-                    solution = new Board(board);
+                    solution = Board(board);
                     solutions.push(solution);
 
                     return settings.numberSolutions == solutions.length;

@@ -5,7 +5,7 @@ define(['cell/cell', 'utils/pubsub', 'utils/arrayExtensions'], function (Cell, P
             pubsub,
 
             init = function () {
-                pubsub = new PubSub();
+                pubsub = PubSub();
                 createEmptyCells();
 
                 if (!otherBoard) {
@@ -38,11 +38,28 @@ define(['cell/cell', 'utils/pubsub', 'utils/arrayExtensions'], function (Cell, P
                         cells[row][column].setNumber(board.cells[row][column].getNumber());
                     }
                 }
+            },
+            
+            getDifficulty = function () {
+                var row,
+                    column,
+                    difficulty = 0;
+                
+                for (row = 0; row < 9; row++) {
+                    for (column = 0; column < 9; column++) {
+                        if(cells[row][column].getNumber()) {
+                            difficulty++;
+                        }
+                    }
+                }
+                
+                return difficulty;
             };
 
         init();
 
         return {
+            getDifficulty: getDifficulty,
             cells: cells,
             pubsub: pubsub
         };

@@ -22,7 +22,7 @@ require({
                 break;
 
             case ('solve'):
-                board = new Board();
+                board = Board();
                 BoardMapper.mapFromString(board, data.board);
                 board = BoardSolver.solve(board)[0];
 
