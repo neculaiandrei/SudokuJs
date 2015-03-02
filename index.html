@@ -38,19 +38,15 @@
     <div class="container">
         <h2 class="header">
 	<span id="difficulty">Medium</span>
-	<span id="timer">
-        <span>00</span>
-        :
-        <span>00</span>
-    </span>
+	<span id="sudoku-timer" data-bind="text: time"></span>
 	</h2>
         <table class="sudoku-table" data-bind="template: { name: 'board' }">
         </table>
         <div class="button-container">
-            <button id="easy" class="bg-white">Easy</button>
-            <button id="medium" class="bg-yellow">Medium</button>
-            <button id="hard" class="bg-red">Hard</button>
-            <button id="solve" class="bg-green">Solve</button>
+            <button data-bind="click: function () { generate(32) ; }" class="bg-white">Easy</button>
+            <button data-bind="click: function () { generate(27) ; }" class="bg-yellow">Medium</button>
+            <button data-bind="click: function () { generate(24) ; }" class="bg-red">Hard</button>
+            <button data-bind="click: solve" class="bg-green">Solve</button>
         </div>
     </div>
     <div id="modalDialog">
