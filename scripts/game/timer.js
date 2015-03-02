@@ -1,4 +1,5 @@
 define(function () {
+    
     var Timer = (function (element) {
         var seconds,
             minutes,

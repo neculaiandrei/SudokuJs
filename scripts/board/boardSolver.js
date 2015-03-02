@@ -49,11 +49,11 @@ define(['./board'], function (Board) {
                     cellToFill.setNumber(possibleNumbers[it]);
 
                     if (recursiveSolve()) {
-                        cellToFill.removeNumber();
+                        cellToFill.setNumber();
                         return true;
                     }
 
-                    cellToFill.removeNumber();
+                    cellToFill.setNumber();
                 }
             }
 

@@ -2,9 +2,10 @@
 <html>
 
 <head>
-    <meta name="viewport" content="width=device-width, user-scalable=no">
-    <link rel="stylesheet" type="text/css" href="styles/style.css" />
+    <link rel="stylesheet" type="text/css" href="./styles/style.css" />
     <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
+    
+    <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>Sudoku</title>
 </head>
 
@@ -43,7 +44,7 @@
         <span>00</span>
     </span>
 	</h2>
-        <table class="sudoku-table">
+        <table class="sudoku-table" data-bind="template: { name: 'board' }">
         </table>
         <div class="button-container">
             <button id="easy" class="bg-white">Easy</button>
@@ -58,7 +59,13 @@
             <button class="bg-white">Close</button>
         </div>
     </div>
-    <script type="text/javascript" data-main="scripts/main" src="scripts/lib/require.min.js"></script>
+    
+    <script type="text/javascript" src="scripts/libs/jquery.min.js"></script>
+    <script type="text/javascript" src="scripts/libs/knockout.min.js"></script>
+    <script type="text/javascript" src="scripts/libs/koExternalTemplateEngine_all.min.js"></script>
+    <script type="text/javascript" src="scripts/libs/prefixfree.min.js"></script>
+    
+    <script type="text/javascript" data-main="scripts/main" src="scripts/libs/require.min.js"></script>
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-importScripts('../lib/require.min.js');
+importScripts('../libs/require.min.js');
 
 require({
         baseUrl: "../"

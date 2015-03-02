@@ -80,7 +80,7 @@ define(['./boardSolver','./board'], function (BoardSolver, Board) {
                     cell = fullBoard.cells[position.row][position.column];
                     cellNumber = cell.getNumber();
 
-                    cell.removeNumber();
+                    cell.setNumber();
 
                     BoardSolver.settings.numberSolutions = 2;
 

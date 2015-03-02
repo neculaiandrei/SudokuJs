@@ -1,41 +1,12 @@
-<%
-    var boxRow,
-        boxColumn,
-        i,
-        j,
-        row,
-        column,
-        cell;
-    for (boxRow = 0; boxRow < 3; boxRow++) {
-    %>
-        <tr>
-        <% for (boxColumn = 0; boxColumn < 3; boxColumn++) { %>
-            <td>
+<tbody data-bind="foreach: rowBoxes">
+    <tr data-bind="foreach: boxes">
+        <td>
             <table>
-            <% for (i = 0; i < 3; i++) { %>
-                <tr>
-                <% for (j = 0; j < 3; j++) {
-                    row = boxRow * 3 + i;
-                    column = boxColumn * 3 + j;
-                    cell = board.cells[row][column];
-                    
-                    if(cell.getNumber()) { %>
-                    <td class='sudoku-cell sudoku-cell-blocked 
-                        data-row='<%= row %>'
-                        data-column='<%= column %>'>
-                        <input type='text' maxlength='1' value='<%= cell.getNumber() %>' readonly/>
-                    </td>
-                    <% } else { %>
-                    <td class='sudoku-cell'
-                        data-row='<%= row %>'
-                        data-column='<%= column %>'>
-                        <input type='text' maxlength='1' value=''/>
-                    </td>
-                    <% }} %>
-                </tr>        
-            <% } %>
-            </td>
+                <tbody data-bind="foreach: rowCells">
+                    <tr data-bind="template: {name: 'cell', foreach: cells}">
+                    </tr>
+                </tbody>
             </table>
-        <% } %>
-        </tr>
-    <% } %>
+        </td>
+    </tr>
+</tbody>

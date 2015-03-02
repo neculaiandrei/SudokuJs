@@ -24,6 +24,10 @@ define(function () {
 
             setNumber = function (newNumber) {
                 
+                if (appearances[newNumber]) {
+                    return 0;
+                }
+                
                 if (number) {
                     pubsub.publish('numberChanged-' + row + column, [number, -1]);
                 }
@@ -33,10 +37,7 @@ define(function () {
                 }
                 
                 number = newNumber;
-            },
-
-            removeNumber = function () {
-                setNumber();
+                return 1;
             },
             
             handleChange = function (args) {
@@ -85,7 +86,6 @@ define(function () {
             getPossibleNumbers: getPossibleNumbers,
             getNumber: getNumber,
             setNumber: setNumber,
-            removeNumber: removeNumber,
             handleChange: handleChange
         };
         

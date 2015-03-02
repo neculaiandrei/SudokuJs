@@ -1,16 +1,17 @@
-define(['game/timer', 'game/boardUI', 'game/sudokuWorker', 'board/boardDifficulty'],
-    function (Timer, BoardUI, SudokuWorker, BoardDifficulty) {
-
+define(['game/timer', 'game/sudokuWorker', 'board/boardDifficulty', 'game/boardVM'],
+    function (Timer, SudokuWorker, BoardDifficulty, BoardVM) {
         var GameUI = (function () {
             var currentBoard,
                 currentDifficulty,
                 isSolving,
-                loader,
-                difficultyElement,
+                $loader,
+                $difficulty,
+                $table,
 
                 init = function () {
-                    loader = $("#loader-wrapper");
-                    difficultyElement = $("#difficulty");
+                    $loader = $("#loader-wrapper");
+                    $difficulty = $("#difficulty");
+                    $table = $(".sudoku-table");
                     handleButtons();
                     generateInitialBoard();
                 },
@@ -41,7 +42,7 @@ define(['game/timer', 'game/boardUI', 'game/sudokuWorker', 'board/boardDifficult
 
                     $("#solve").click(function () {
                         SudokuWorker.solve(currentBoard, onSolved);
-                        loader.fadeIn();
+                        $loader.fadeIn();
                     });
                 },
 
@@ -54,37 +55,43 @@ define(['game/timer', 'game/boardUI', 'game/sudokuWorker', 'board/boardDifficult
                 },
 
                 generate = function (difficulty) {
-                    loader.fadeIn();
+                    $loader.fadeIn();
                     currentDifficulty = difficulty;
                     SudokuWorker.generate(currentDifficulty, onGenerated);
                 },
 
                 onGenerated = function (board) {
                     currentBoard = board;
-                    BoardUI.build(currentBoard);
-                    loader.fadeOut();
+                    ko.cleanNode($table[0]);
+                    ko.applyBindings(BoardVM(board), $table[0]);
+                    $loader.fadeOut();
                     Timer.reset();
                     updateDifficulty();
                 },
 
                 onSolved = function (board) {
                     currentBoard = board;
-                    BoardUI.build(currentBoard);
-                    loader.fadeOut();
+                    ko.applyBindings(BoardVM(board), $table[0]);
+                    $loader.fadeOut();
                 },
 
 
                 updateDifficulty = function () {
                     if (currentDifficulty == BoardDifficulty.Easy) {
-                        difficultyElement.text("Easy");
+                        $difficulty.text("Easy");
                     } else if (currentDifficulty == BoardDifficulty.Medium) {
-                        difficultyElement.text("Medium");
+                        $difficulty.text("Medium");
                     } else if (currentDifficulty == BoardDifficulty.Hard) {
-                        difficultyElement.text("Hard");
+                        $difficulty.text("Hard");
                     }
                 };
-            
-            $(document).ready(init);
-            
+
+
+            return {
+                init: init
+            }
+
         })();
+
+        return GameUI;
     });
