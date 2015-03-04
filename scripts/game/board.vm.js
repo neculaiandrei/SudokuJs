@@ -1,5 +1,5 @@
-define(['game/cellVM'],function (CellVM) {
-    var BoardVM = function (board) {
+define(function () {
+    var BoardViewModel = function (board) {
         var rowBoxes,
             
             init = function () {
@@ -18,7 +18,7 @@ define(['game/cellVM'],function (CellVM) {
                             rowBoxes[i].boxes[j].rowCells[k] = { cells: [] };
                             for (l = 0; l <  3; l++) {
                                 rowBoxes[i].boxes[j].rowCells[k].cells[l] = 
-                                    {cell: CellVM(board.cells[i * 3 + k][j * 3 + l])};
+                                    {cell: ko.observable(board.cells[i * 3 + k][j * 3 + l])};
                             }
                         }
                     }
@@ -28,9 +28,10 @@ define(['game/cellVM'],function (CellVM) {
         init();
         
         return {
-            rowBoxes: rowBoxes
+            rowBoxes: rowBoxes,
+            difficulty: board.getDifficulty
         };
     };
     
-    return BoardVM;
+    return BoardViewModel;
 });

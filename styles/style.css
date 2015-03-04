@@ -1,6 +1,45 @@
+/*********/
+/* FONTS */
+/*********/
+
 @font-face {
     font-family: Squares;
     src: url('../fonts/Squares Bold Free.otf');
+}
+/********************/
+/* BASE */
+/********************/
+
+div,
+body,
+html,
+ul,
+ol,
+li {
+    margin: 0;
+    padding: 0;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+a {
+    color: rgb(250, 248, 239);
+    text-decoration: none;
+}
+
+a:visited {
+    color: rgb(250, 248, 239);
+}
+
+a:hover {
+    color: rgb(250, 248, 239);
+}
+
+a:active {
+    color: rgb(250, 248, 239);
 }
 
 * {
@@ -13,38 +52,155 @@
 }
 
 *::selection {
-    background: rgba(255, 255, 255, 0.5);
+    background: rgba(250, 248, 239, 1);
 }
 
 body {
-    background: url('../images/background1.jpg');
     font-family: Squares;
-    color: white;
-    text-align: center;
+    background: rgb(250, 248, 239);
+}
+/********/
+/* MENU */
+/********/
+
+.menu {
+    position: fixed;
+    z-index: 500;
+    width: 100%;
+    background: rgb(250, 248, 239);
+    color: rgb(15, 25, 40);
+    box-shadow: inset 0px -2px 1px 0px rgba(0, 0, 0, 0.33);
 }
 
-.container {
+.menu h1 {
+    float: left;
+    margin-left: 20px;
+}
+
+.menu h1 a {
+    color: rgb(15, 25, 40);
+}
+
+.menu h1 a:hover {
+    color: rgb(15, 25, 40);
+}
+
+.menu h1 a:visited {
+    color: rgb(15, 25, 40);
+}
+
+
+.menu-pull {
+    width: 32px;
+    height: 32px;
+    margin: 20px 20px;
+    float: right;
+    background: url('../images/list-view-32.png');
+}
+
+.menu-pull:hover {
+    animation: spin-menu 1s;
+}
+
+.menu-close {
+    width: 32px;
+    height: 32px;
+    margin: 20px 20px;
+    top: 0;
+    right: 0;
+    position: absolute;
+    background: url('../images/x-mark-32.png');
+}
+
+.menu-close:hover {
+    animation: spin-menu 1s;
+}
+
+.menu-hidden {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgba(15, 25, 40, 0.95);
+    text-align: center;
+    color: rgb(250, 248, 239);
+}
+
+.menu-hidden ul {
+    position: relative;
+    top: 10%;
+    height: 90%;
+}
+
+.menu-hidden li {
+    height: 20%;
+    line-height: 100px;
+}
+
+.menu-hidden li a {
+    position: relative;
+}
+
+.menu-hidden li a:before {
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 2px;
+    bottom: -5px;
+    left: 0;
+    background-color: rgb(250, 248, 239);
+    visibility: hidden;
+    transform: scaleX(0);
+    transition: all 0.3s ease-in-out 0s;
+}
+
+.menu-hidden li a:hover:before {
+    visibility: visible;
+    transform: scaleX(1);
+}
+
+@keyframes spin-menu {
+    0% {
+        transform: rotate(180deg);
+    }
+}
+/***************/
+/* SUDOKU GAME */
+/***************/
+
+#sudoku-wrapper {
+    padding-top: 100px;
+    background: rgb(15, 25, 40);
+    text-align: center;
+    box-shadow: 0px 3px 3px 0px rgba(15, 25, 40, 0.5);
+}
+
+#sudoku-container {
+    color: rgb(250, 248, 239);
     display: inline-block;
     position: relative;
     text-align: left;
 }
 
-.header {
+.sudoku-header {
     text-shadow: 2px 2px #000;
     margin: 20px 5px;
 }
 
-.header:after {
+.sudoku-header:after {
     content: "";
     display: block;
     clear: both;
 }
 
-.header span:nth-of-type(1) {
+#sudoku-difficulty {
     float: left;
 }
 
-.header span:nth-of-type(2) {
+#sudoku-clock {
     float: right;
 }
 
@@ -68,11 +224,15 @@ body {
     background: transparent;
     font-family: Squares;
     font-size: 16px;
-    color: white;
+    color: rgb(250, 248, 239);
     text-align: center;
 }
+/***********/
+/* BUTTONS */
+/***********/
 
 .button-container {
+    padding: 10px;
     text-align: center;
 }
 
@@ -82,7 +242,7 @@ button {
     outline: 0;
     font-family: Squares;
     font-size: 16px;
-    color: white;
+    color: rgb(250, 248, 239);
     text-align: center;
     box-shadow: 0 2px 2px rgba(255, 255, 255, 0.2) inset, 0 5px 0 black, 0 -2px 2px rgba(255, 255, 255, 0.2) inset;
     transition: all 0.25s;
@@ -91,6 +251,9 @@ button {
 button:active {
     box-shadow: 0 2px 2px rgba(255, 255, 255, 0.2) inset, 0 2px 0 black, 0 -2px 2px rgba(255, 255, 255, 0.2) inset;
 }
+/***************/
+/* BACKGROUNDS */
+/***************/
 
 .bg-red {
     background: rgba(255, 20, 20, 0.25);
@@ -105,11 +268,11 @@ button:active {
 }
 
 .bg-white {
-    background: rgba(255, 255, 255, 0.25);
+    background: rgba(250, 248, 239, 0.25);
 }
 
 .bg-blue {
-    background: rgba(0, 49, 102, 0.8);
+    background: rgba(15, 25, 40, 0.8);
 }
 
 @media screen and (min-width: 480px) {
@@ -124,6 +287,37 @@ button:active {
     }
 }
 
+/************/
+/* SECTIONS */
+/************/
+
+section {
+    width: 60%;
+    padding: 1% 20% 5% 20%;
+    
+    color: rgb(15, 25, 40);
+    
+    box-shadow: 0px 0px 10px 0px rgba(15, 25, 40,0.5);
+}
+
+section h1 {
+    text-align: center;
+}
+
+.alternative-section {
+    color: rgb(250, 248, 239);
+    background: rgb(15, 25, 40);
+}
+
+#code-details { 
+    text-align: center;
+}
+
+
+/**********/
+/* LOADER */
+/**********/
+
 #loader-wrapper {
     position: fixed;
     top: 0;
@@ -131,9 +325,9 @@ button:active {
     width: 100%;
     height: 100%;
     z-index: 1000;
-    
-    color: #003366;
-    background: white;
+    color: rgb(15, 25, 40);
+    background: rgb(250, 248, 239);
+    text-align: center;
 }
 
 #loader {
@@ -144,62 +338,117 @@ button:active {
     width: 250px;
     height: 200px;
     margin: -100px 0 0 -125px;
-    z-index: 1500;   
+    z-index: 1500;
 }
 
 #loader table {
     width: 100px;
     height: 100px;
     margin: 0 75px;
-
-    animation:spin-board 5s 1s ease-in-out alternate infinite;
+    animation: spin-board 5s 1s ease-in-out alternate infinite;
 }
 
 #loader td {
-   animation:spin-cell 5s 1s ease-in-out alternate infinite;
+    animation: spin-cell 5s 1s ease-in-out alternate infinite;
 }
 
-@keyframes spin-board { 
-    0% { transform: rotate(0deg); transform:rotate(0deg); }
-    20% { transform: rotate(90deg); transform:rotate(90deg); }
-    30% { transform: rotate(90deg); transform:rotate(90deg); }
-    45% { transform: rotate(180deg); transform:rotate(180deg); }
-    55% { transform: rotate(180deg); transform:rotate(180deg); }
-    70% { transform: rotate(270deg); transform:rotate(270deg); }
-    80% { transform: rotate(270deg); transform:rotate(270deg); }
-    100% { transform: rotate(360deg); transform:rotate(360deg); }
+@keyframes spin-board {
+    0% {
+        transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
+    20% {
+        transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    30% {
+        transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    45% {
+        transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    55% {
+        transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    70% {
+        transform: rotate(270deg);
+        transform: rotate(270deg);
+    }
+    80% {
+        transform: rotate(270deg);
+        transform: rotate(270deg);
+    }
+    100% {
+        transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
 }
 
-
-@keyframes spin-cell { 
-    0% { transform: rotate(360deg); transform:rotate(360deg); }
-    20% { transform: rotate(270deg); transform:rotate(270deg); }
-    30% { transform: rotate(270deg); transform:rotate(270deg); }
-    45% { transform: rotate(180deg); transform:rotate(180deg); }
-    55% { transform: rotate(180deg); transform:rotate(180deg); }
-    70% { transform: rotate(90deg); transform:rotate(90deg); }
-    80% { transform: rotate(90deg); transform:rotate(90deg); }
-    100% { transform: rotate(0deg); transform:rotate(0deg); }
+@keyframes spin-cell {
+    0% {
+        transform: rotate(360deg);
+        transform: rotate(360deg);
+    }
+    20% {
+        transform: rotate(270deg);
+        transform: rotate(270deg);
+    }
+    30% {
+        transform: rotate(270deg);
+        transform: rotate(270deg);
+    }
+    45% {
+        transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    55% {
+        transform: rotate(180deg);
+        transform: rotate(180deg);
+    }
+    70% {
+        transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    80% {
+        transform: rotate(90deg);
+        transform: rotate(90deg);
+    }
+    100% {
+        transform: rotate(0deg);
+        transform: rotate(0deg);
+    }
 }
-
+/****************/
+/* MODAL DIALOG */
+/****************/
 
 #modalDialog {
-	position: fixed;
-	top: 0;
-	right: 0;
-	bottom: 0;
-	left: 0;
-    
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
     display: none;
-	z-index: 1000;
+    z-index: 1000;
 }
 
 #modalDialog > div {
-	width: 200px;
-	position: relative;
-	margin: 10px auto;
-	padding: 10px;
-	background: rgba(0,0,0,0.7);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    
+    width: 200px;
+    margin: -100px 0 0 -100px;
+    padding: 10px;
+    
+    color: rgb(250, 248, 239);
+    text-align: center;
+    
+    background: rgba(15, 25, 40, 0.95);
+    box-shadow: 0px 0px 10px 0px rgba(250, 248, 239,0.5);
 }
 
 @media screen and (max-width: 479px) {
@@ -208,10 +457,32 @@ button:active {
         height: 35px;
         min-width: 20px;
     }
+    
     button {
         display: block;
         width: 80%;
         margin-left: auto;
         margin-right: auto;
     }
+    
+    section {
+        width: 90%;
+        padding: 1% 5% 5% 5%;
+    }
+}
+/************/
+/* CLEARFIX */
+/************/
+
+.clearfix:after {
+    content: "";
+    display: table;
+    clear: both;
+}
+
+.github-icon {
+    width: 48px;
+    height: 48px;
+    display: inline-block;
+    background: url("../images/github-9-48.png");
 }

@@ -1,4 +1,4 @@
-require(['game/gameVM'], function (GameVM) {
+require(['game/game.vm', 'game/ui'], function (GameViewModel) {
     
     infuser.defaults.templateUrl = "scripts/templates";
     infuser.defaults.templatePrefix = "";
@@ -6,8 +6,8 @@ require(['game/gameVM'], function (GameVM) {
     
     $(document).ready(function () {
         
-        GameVM.init();
+        GameViewModel.init();
         
-        ko.applyBindings(GameVM, $(".button-container")[0]);
+        ko.applyBindings(GameViewModel, $(".button-container")[0]);
     });
 });

@@ -25,7 +25,7 @@ define(function () {
 
         updateTime = function () {
 
-            if (seconds == 60) {
+            if (seconds() == 60) {
                 seconds(0);
                 minutes(minutes() + 1);
             }

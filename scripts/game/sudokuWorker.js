@@ -54,7 +54,7 @@ define(['board/board', 'board/boardMapper'],
                 generate: generate,
                 solve: solve,
             }
-        })("scripts/game/sudokuWorker_src.js");
+        })("scripts/game/sudokuWorker.src.js");
 
         return SudokuWorker;
     });

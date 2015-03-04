@@ -2,9 +2,10 @@
 <html>
 
 <head>
+
     <link rel="stylesheet" type="text/css" href="./styles/style.css" />
     <link rel="shortcut icon" type="image/ico" href="images/favicon.ico" />
-    
+
     <meta name="viewport" content="width=device-width, user-scalable=no">
     <title>Sudoku</title>
 </head>
@@ -35,32 +36,84 @@
             </div>
         </div>
     </div>
-    <div class="container">
-        <h2 class="header">
-	<span id="difficulty">Medium</span>
-	<span id="sudoku-timer" data-bind="text: time"></span>
-	</h2>
-        <table class="sudoku-table" data-bind="template: { name: 'board' }">
-        </table>
-        <div class="button-container">
-            <button data-bind="click: function () { generate(32) ; }" class="bg-white">Easy</button>
-            <button data-bind="click: function () { generate(27) ; }" class="bg-yellow">Medium</button>
-            <button data-bind="click: function () { generate(24) ; }" class="bg-red">Hard</button>
-            <button data-bind="click: solve" class="bg-green">Solve</button>
+
+    <div class="menu clearfix">
+        <h1><a href="">Sudoku</a></h1>
+        <span class="menu-pull"></span>
+        <div class="menu-hidden">
+            <span class="menu-close"></span>
+            <ul>
+                <li><a href="#rules-details">How to play ?</a>
+                </li>
+                <li><a href="#help-details">How to use ?</a>
+                </li>
+                <li><a href="#developement-details">How it works ?</a>
+                </li>
+                <li><a href="#facts-details">MORE boring facts</a>
+                </li>
+                <li><a href="#code-details">Source code</a>
+                </li>
+            </ul>
         </div>
     </div>
+
+    <div id="sudoku-wrapper">
+        <div id="sudoku-container">
+            <h2 class="sudoku-header">
+                <span id="sudoku-difficulty">Medium</span>
+                <span id="sudoku-clock" data-bind="text: time"></span>
+            </h2>
+            <table id="sudoku-board" data-bind="template: { name: 'board' }">
+            </table>
+            <div class="button-container">
+                <button data-bind="click: function () { generate(32) ; }" class="bg-white">Easy</button>
+                <button data-bind="click: function () { generate(27) ; }" class="bg-yellow">Medium</button>
+                <button data-bind="click: function () { generate(24) ; }" class="bg-red">Hard</button>
+                <button data-bind="click: solve" class="bg-green">Solve</button>
+            </div>
+        </div>
+    </div>
+    
+    <section id="rules-details">
+        <h1>How to play ?</h1>
+        <p>Fill cells with numbers from 1 to 9</p>
+        <p>The board has 9 regions, each has 9 cell</p>
+        <p>Rule 1 - each Region consist of unique numbers (1-9)</p>
+        <p>Rule 2 - each Row of the board consist of unique numbers (1-9)</p>
+        <p>Rule 3 - each Column of the board consist of unique numbers (1-9)</p>
+    </section>
+    <section id="help-details" class="alternative-section">
+        <h1>How to use ?</h1>
+    </section>
+    <section id="developement-details">
+        <h1>How it works ?</h1>
+    </section>
+    <section id="facts-details" class="alternative-section">
+        <h1>MORE boring facts</h1>
+        <p>Sudoku origin is not from Asia</p>
+        <p>The first modern Sudoku game was published at 1979</p>
+        <p>An Indiana 74-y/o retired architect & freelance puzzle maker created it</p>
+        <p>"Sūji wa dokushin ni kagiru" was introduced in Japan in April 1984</p>
+        <p>The name sucked, so the Japs changed it to "Sudoku"</p>
+        <p>You should only play board games when you're bored</p>
+    </section>
+    <section id="code-details">
+        <h1>Source code</h1>
+        <a href="https://github.com/neculaiandrei/SudokuJs" class="github-icon"></a>
+    </section>
+
     <div id="modalDialog">
         <div>
             <p></p>
             <button class="bg-white">Close</button>
         </div>
     </div>
-    
+
     <script type="text/javascript" src="scripts/libs/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/libs/knockout.min.js"></script>
     <script type="text/javascript" src="scripts/libs/koExternalTemplateEngine_all.min.js"></script>
     <script type="text/javascript" src="scripts/libs/prefixfree.min.js"></script>
-    
+
     <script type="text/javascript" data-main="scripts/main" src="scripts/libs/require.min.js"></script>
 </body>
 
