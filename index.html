@@ -31,7 +31,7 @@
                 </tr>
             </table>
             <div id="loader-extra">
-                <p>Creating the board may take a while...</p>
+                <p>Creating the board may take a while..</p>
                 <button id="retry" class="bg-blue">Retry</button>
             </div>
         </div>
@@ -39,19 +39,28 @@
 
     <div class="menu clearfix">
         <h1><a href="">Sudoku</a></h1>
+        <span class="menu-bullets-container">
+            <a class="menu-bullet slow-anchor" href="#sudoku-container"></a>
+            <a class="menu-bullet slow-anchor" href="#rules-details"></a>
+            <a class="menu-bullet slow-anchor" href="#help-details"></a>
+            <a class="menu-bullet slow-anchor" href="#developement-details"></a>
+            <a class="menu-bullet slow-anchor" href="#facts-details"></a>
+        </span>
         <span class="menu-pull"></span>
         <div class="menu-hidden">
             <span class="menu-close"></span>
             <ul>
-                <li><a href="#rules-details">How to play ?</a>
+                <li><a class="slow-anchor" href="#sudoku-container">Game</a>
                 </li>
-                <li><a href="#help-details">How to use ?</a>
+                <li><a class="slow-anchor" href="#rules-details">How to play ?</a>
                 </li>
-                <li><a href="#developement-details">How it works ?</a>
+                <li><a class="slow-anchor" href="#help-details">How to use ?</a>
                 </li>
-                <li><a href="#facts-details">MORE boring facts</a>
+                <li><a class="slow-anchor" href="#developement-details">How it works ?</a>
                 </li>
-                <li><a href="#code-details">Source code</a>
+                <li><a class="slow-anchor" href="#facts-details">MORE boring facts</a>
+                </li>
+                <li><a class="slow-anchor" href="#code-details">Source code</a>
                 </li>
             </ul>
         </div>
@@ -76,25 +85,36 @@
     
     <section id="rules-details">
         <h1>How to play ?</h1>
-        <p>Fill cells with numbers from 1 to 9</p>
-        <p>The board has 9 regions, each has 9 cell</p>
-        <p>Rule 1 - each Region consist of unique numbers (1-9)</p>
-        <p>Rule 2 - each Row of the board consist of unique numbers (1-9)</p>
-        <p>Rule 3 - each Column of the board consist of unique numbers (1-9)</p>
+        <p>Fill cells with numbers from 1 to </p>
+        <p>The board has 9 regions, each has 9 cel</p>
+        <p>Rule 1 - each Region consist of unique numbers (1-9</p>
+        <p>Rule 2 - each Row of the board consist of unique numbers (1-9</p>
+        <p>Rule 3 - each Column of the board consist of unique numbers (1-9</p>
     </section>
     <section id="help-details" class="alternative-section">
         <h1>How to use ?</h1>
+        <p>Type in each square a number</p>
+        <p>Remove number to empty square</p>
+        <p>Start a new easy/medium/hard board</p>
+        <p>Stucked? Solve the board</p>
     </section>
     <section id="developement-details">
         <h1>How it works ?</h1>
+        <p>Empty board is generated</p>
+        <p>First row is filled with random numbers</p>
+        <p>Board is populated with numbers until it's a valid Sudoku game</p>
+        <p>Random cells are removed from board</p>
+        <p>Difficulty level is described by the number of filled squares</p>
+        <p>Each board is probably unique by the laws of probability</p>
+        <p>The game generates new boards in the background using WebWorkes</p>
     </section>
     <section id="facts-details" class="alternative-section">
         <h1>MORE boring facts</h1>
-        <p>Sudoku origin is not from Asia</p>
-        <p>The first modern Sudoku game was published at 1979</p>
-        <p>An Indiana 74-y/o retired architect & freelance puzzle maker created it</p>
-        <p>"Sūji wa dokushin ni kagiru" was introduced in Japan in April 1984</p>
-        <p>The name sucked, so the Japs changed it to "Sudoku"</p>
+        <p>The name "Sudoku" stems from two Japanese words: "su", which means "number" and doku, which means "single" Translated, it mostly means "single numbers only"</p>
+        <p>Actually, Sudoku isn't a Japanese game it all. It's American invented. Howard Garns created it as Number Place in 1979 but died in 1989 before Japanese publisher Nikoli got a hold of it</p>
+        <p> British Airways absolutely forbids its flight attendants from solving Sudoku puzzles during either takeoff or landing</p>
+        <p>There are 6,670,903,752,021,072,936,960 possible combinations for completing a 9-by-9 Sudoku grid, but only 5,472,730,538 of them really count for different solutions. Needlessly to say, you need a handful of lifetimes to solve all of them</p>
+        <p>When Sudoku became a world hit in 2005, it is estimated that it is the biggest phenomenon since the Rubik's Cube in the 1980</p>
         <p>You should only play board games when you're bored</p>
     </section>
     <section id="code-details">
