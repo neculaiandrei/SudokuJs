@@ -1,0 +1,12 @@
+<h2 class="sudoku-header">
+                    <span id="sudoku-difficulty" data-bind="text: currentDifficulty">Medium</span>
+                    <span id="sudoku-clock" data-bind="text: TimerViewModel.time"></span>
+                </h2>
+<table id="sudoku-board" data-bind="template: { name: 'board', data: BoardViewModel }">
+</table>
+<div class="button-container">
+    <button data-bind="click: function () { generate('Easy') ; }" class="bg-white">Easy</button>
+    <button data-bind="click: function () { generate('Medium') ; }" class="bg-yellow">Medium</button>
+    <button data-bind="click: function () { generate('Hard') ; }" class="bg-red">Hard</button>
+    <button data-bind="click: solve" class="bg-green">Solve</button>
+</div>

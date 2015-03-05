@@ -15,14 +15,14 @@ define(function () {
         });
 
         var navbarOffset = 75;
-        
+
         $('.slow-anchor').click(function () {
             $("html, body").animate({
                 scrollTop: $($(this).attr("href")).offset().top - navbarOffset + 2
             }, 500);
             return false;
         });
-        
+
         menuHidden.find("a").each(function () {
             var currentLink = $(this);
             currentLink.click(function () {
@@ -44,7 +44,7 @@ define(function () {
                 }
             });
         }
-        
+
         onScroll();
 
         $(document).on("scroll", onScroll);

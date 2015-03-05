@@ -11,31 +11,7 @@
 </head>
 
 <body>
-    <div id="loader-wrapper">
-        <div id="loader">
-            <table>
-                <tr>
-                    <td>9</td>
-                    <td>3</td>
-                    <td>7</td>
-                </tr>
-                <tr>
-                    <td>4</td>
-                    <td>8</td>
-                    <td>2</td>
-                </tr>
-                <tr>
-                    <td>1</td>
-                    <td>5</td>
-                    <td>6</td>
-                </tr>
-            </table>
-            <div id="loader-extra">
-                <p>Creating the board may take a while..</p>
-                <button id="retry" class="bg-blue">Retry</button>
-            </div>
-        </div>
-    </div>
+    <div id="loader-wrapper" data-bind="template: { name: 'loader', data: LoaderViewModel }, fade: LoaderViewModel.isVisible"></div>
 
     <div class="menu clearfix">
         <h1><a href="">Sudoku</a></h1>
@@ -43,10 +19,12 @@
             <a class="menu-bullet slow-anchor" href="#sudoku-container"></a>
             <a class="menu-bullet slow-anchor" href="#rules-details"></a>
             <a class="menu-bullet slow-anchor" href="#help-details"></a>
+            <a class="menu-bullet slow-anchor" href="#editor-mode-details"></a>
             <a class="menu-bullet slow-anchor" href="#developement-details"></a>
             <a class="menu-bullet slow-anchor" href="#facts-details"></a>
         </span>
         <span class="menu-pull"></span>
+        <span class="menu-editor-mode"></span>
         <div class="menu-hidden">
             <span class="menu-close"></span>
             <ul>
@@ -55,6 +33,8 @@
                 <li><a class="slow-anchor" href="#rules-details">How to play ?</a>
                 </li>
                 <li><a class="slow-anchor" href="#help-details">How to use ?</a>
+                </li>
+                <li><a class="slow-anchor" href="#editor-mode-details">Editor mode</a>
                 </li>
                 <li><a class="slow-anchor" href="#developement-details">How it works ?</a>
                 </li>
@@ -65,24 +45,13 @@
             </ul>
         </div>
     </div>
-
     <div id="sudoku-wrapper">
         <div id="sudoku-container">
-            <h2 class="sudoku-header">
-                <span id="sudoku-difficulty">Medium</span>
-                <span id="sudoku-clock" data-bind="text: time"></span>
-            </h2>
-            <table id="sudoku-board" data-bind="template: { name: 'board' }">
-            </table>
-            <div class="button-container">
-                <button data-bind="click: function () { generate(32) ; }" class="bg-white">Easy</button>
-                <button data-bind="click: function () { generate(27) ; }" class="bg-yellow">Medium</button>
-                <button data-bind="click: function () { generate(24) ; }" class="bg-red">Hard</button>
-                <button data-bind="click: solve" class="bg-green">Solve</button>
-            </div>
+            <div data-bind="template: { name: 'game', data: GameViewModel }, fade: GameViewModel.isVisible"></div>
+            <div data-bind="template: { name: 'gameEditor', data: GameEditorViewModel }, fade: GameEditorViewModel.isVisible"></div>
         </div>
     </div>
-    
+
     <section id="rules-details">
         <h1>How to play ?</h1>
         <p>Fill cells with numbers from 1 to </p>
@@ -98,7 +67,12 @@
         <p>Start a new easy/medium/hard board</p>
         <p>Stucked? Solve the board</p>
     </section>
-    <section id="developement-details">
+    <section id="editor-mode-details">
+        <h1>Editor mode</h1>
+        <p>Editor mode lets you import a board</p>
+        <p>You can create your own board and export it</p>
+    </section>
+    <section id="developement-details" class="alternative-section">
         <h1>How it works ?</h1>
         <p>Empty board is generated</p>
         <p>First row is filled with random numbers</p>
@@ -108,7 +82,7 @@
         <p>Each board is probably unique by the laws of probability</p>
         <p>The game generates new boards in the background using WebWorkes</p>
     </section>
-    <section id="facts-details" class="alternative-section">
+    <section id="facts-details">
         <h1>MORE boring facts</h1>
         <p>The name "Sudoku" stems from two Japanese words: "su", which means "number" and doku, which means "single" Translated, it mostly means "single numbers only"</p>
         <p>Actually, Sudoku isn't a Japanese game it all. It's American invented. Howard Garns created it as Number Place in 1979 but died in 1989 before Japanese publisher Nikoli got a hold of it</p>
@@ -117,16 +91,12 @@
         <p>When Sudoku became a world hit in 2005, it is estimated that it is the biggest phenomenon since the Rubik's Cube in the 1980</p>
         <p>You should only play board games when you're bored</p>
     </section>
-    <section id="code-details">
+    <section id="code-details" class="alternative-section">
         <h1>Source code</h1>
         <a href="https://github.com/neculaiandrei/SudokuJs" class="github-icon"></a>
     </section>
 
-    <div id="modalDialog">
-        <div>
-            <p></p>
-            <button class="bg-white">Close</button>
-        </div>
+    <div id="modalDialog" data-bind="template: {name: 'modal', data: ModalViewModel}, fade: ModalViewModel.isVisible">
     </div>
 
     <script type="text/javascript" src="scripts/libs/jquery.min.js"></script>

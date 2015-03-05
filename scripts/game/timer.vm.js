@@ -1,46 +1,48 @@
 define(function () {
+    var TimerViewModel = function () {
+        var seconds = ko.observable(0),
+            minutes = ko.observable(0),
 
-    var seconds = ko.observable(0),
-        minutes = ko.observable(0),
-        
-        formatTimeUnit = function (timeUnit) {
-            if (timeUnit < 10) {
-                return "0" + timeUnit;
-            }
-            return timeUnit;
-        },
-        
-        time = ko.computed(function() {
-            return formatTimeUnit(minutes()) + ":" + formatTimeUnit(seconds());
-        }),
-        
-        updateTimeTimeout,
+            formatTimeUnit = function (timeUnit) {
+                if (timeUnit < 10) {
+                    return "0" + timeUnit;
+                }
+                return timeUnit;
+            },
 
-        reset = function () {
-            seconds(0);
-            minutes(0);
-            clearTimeout(updateTimeTimeout);
-            updateTime();
-        },
+            time = ko.computed(function () {
+                return formatTimeUnit(minutes()) + ":" + formatTimeUnit(seconds());
+            }),
 
-        updateTime = function () {
+            updateTimeTimeout,
 
-            if (seconds() == 60) {
+            reset = function () {
                 seconds(0);
-                minutes(minutes() + 1);
-            }
-
-            updateTimeTimeout = setTimeout(function () {
-                seconds(seconds() + 1);
+                minutes(0);
+                clearTimeout(updateTimeTimeout);
                 updateTime();
-            }, 1000);
+            },
+
+            updateTime = function () {
+
+                if (seconds() == 60) {
+                    seconds(0);
+                    minutes(minutes() + 1);
+                }
+
+                updateTimeTimeout = setTimeout(function () {
+                    seconds(seconds() + 1);
+                    updateTime();
+                }, 1000);
+            };
+
+        reset();
+
+        return {
+            time: time,
+            reset: reset
         };
+    }();
 
-    reset();
-
-    return {
-        time: time,
-        reset: reset
-    };
-
+    return TimerViewModel;
 });

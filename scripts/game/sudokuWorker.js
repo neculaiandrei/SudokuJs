@@ -2,10 +2,12 @@ define(['board/board', 'board/boardMapper'],
     function (Board, BoardMapper) {
         var SudokuWorker = (function (src) {
             var worker,
+                isBusy,
                 onGenerated,
                 onSolved,
 
                 start = function () {
+                    isBusy = false;
                     worker = new Worker(src);
                     worker.onmessage = messageHandler;
                 },
@@ -15,6 +17,7 @@ define(['board/board', 'board/boardMapper'],
                 },
 
                 generate = function (difficulty, callback) {
+                    isBusy = true;
                     onGenerated = callback;
                     worker.postMessage({
                         'cmd': 'generate',
@@ -23,6 +26,7 @@ define(['board/board', 'board/boardMapper'],
                 },
 
                 solve = function (board, callback) {
+                    isBusy = true;
                     onSolved = callback;
                     worker.postMessage({
                         'cmd': 'solve',
@@ -40,15 +44,18 @@ define(['board/board', 'board/boardMapper'],
 
                     switch (data.cmd) {
                     case ('generate'):
+                        isBusy = false;
                         onGenerated(board);
                         break;
                     case ('solve'):
+                        isBusy = false;
                         onSolved(board);
                         break;
                     }
                 };
 
             return {
+                isBusy: isBusy,
                 start: start,
                 abort: abort,
                 generate: generate,

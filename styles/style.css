@@ -121,6 +121,14 @@ body {
     background: url('../images/list-view-32.png');
 }
 
+.menu-editor-mode {
+    width: 32px;
+    height: 32px;
+    margin: 20px 10px;
+    float: right;
+    background: url('../images/edit-8-32.png');
+}
+
 .menu-pull:hover {
     animation: spin-menu 1s;
 }
@@ -159,7 +167,7 @@ body {
 }
 
 .menu-hidden li {
-    height: 15%;
+    height: 12%;
     line-height: 100px;
 }
 
@@ -517,5 +525,5 @@ section h1 {
     width: 48px;
     height: 48px;
     display: inline-block;
-    background: url("../images/github-9-48.png");
+    background: url("../images/github-9-48%20(1).png");
 }

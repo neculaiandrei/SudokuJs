@@ -1,13 +1,10 @@
-require(['game/game.vm', 'game/ui'], function (GameViewModel) {
+require(['game/page.vm', 'game/effects', 'game/ko.customBindings'], function (PageViewModel) {
     
     infuser.defaults.templateUrl = "scripts/templates";
     infuser.defaults.templatePrefix = "";
     infuser.defaults.templateSuffix = ".tmpl.html";
     
     $(document).ready(function () {
-        
-        GameViewModel.init();
-        
-        ko.applyBindings(GameViewModel, $(".button-container")[0]);
+          ko.applyBindings(PageViewModel);
     });
 });

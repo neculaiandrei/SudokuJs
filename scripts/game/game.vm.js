@@ -1,89 +1,88 @@
-define(['game/timer.vm', 'game/sudokuWorker', 'board/boardDifficulty', 'game/board.vm', 'game/ko.customBindings'],
+define(['game/timer.vm', 'game/board.vm', 'game/SudokuWorker', 'board/board', 'board/boardDifficulty'],
 
-    function (TimerViewModel, SudokuWorker, BoardDifficulty, BoardViewModel, modal) {
-                var GameViewModel = (function () {
-                    var currentBoard,
-                        currentDifficulty,
-                        isSolving,
-                        difficulty,
-                        $loader,
-                        $board,
+    function (TimerViewModel, BoardViewModel, SudokuWorker, Board, BoardDifficulty) {
+        var GameViewModel = (function () {
+            var obj = {},
+                currentBoard,
+                boardViewModel,
+                currentDifficulty = ko.observable(),
+                isVisible = ko.observable(),
+                isBusy = ko.observable(),
 
-                        init = function () {
-                            $loader = $("#loader-wrapper");
-                            $difficulty = $("#sudoku-difficulty");
-                            $board = $("#sudoku-board");
-                            ko.applyBindings(TimerViewModel, $("#sudoku-clock")[0]);
-                            handleButtons();
-                            generateInitialBoard();
-                        },
+                init = function () {
+                    isVisible(true);
+                    isBusy(true);
 
-                        handleButtons = function () {
+                    //Generate empty board to bind 
+                    //till the full board will be generated
+                    currentBoard = Board();
+                    boardViewModel = BoardViewModel(currentBoard);
 
-                            $("#retry").on("click", function () {
-                                if (isSolving) return;
-                                SudokuWorker.abort();
-                                SudokuWorker.start();
+                    SudokuWorker.start();
 
-                                setTimeout(function () {
-                                    SudokuWorker.generate(currentDifficulty, onGenerated);
-                                }, 1000); //put a second delay for web worker to load
-                            });
-                        },
+                    //allow time for worker to load
+                    setTimeout(function () {
+                        generate("Medium");
+                    }, 1000);
+                },
 
-                        generateInitialBoard = function () {
-                            SudokuWorker.start();
+                restartWorker = function () {
+                    isBusy(true);
 
-                            setTimeout(function () {
-                                SudokuWorker.generate(BoardDifficulty.Medium, onGenerated);
-                            }, 1000); //put a second delay for web worker to load
-                        },
+                    SudokuWorker.abort();
+                    SudokuWorker.start();
 
-                        solve = function () {
-                            SudokuWorker.solve(currentBoard, onSolved);
-                            $loader.fadeIn();
-                        },
+                    //allow time for worker to load
+                    setTimeout(function () {
+                        isBusy(false);
+                    }, 1000);
+                },
 
-                        generate = function (difficulty) {
-                            $loader.fadeIn();
-                            currentDifficulty = difficulty;
-                            SudokuWorker.generate(currentDifficulty, onGenerated);
-                        },
+                solve = function () {
+                    isBusy(true);
+                    SudokuWorker.solve(currentBoard, onSolved);
+                },
 
-                        onGenerated = function (board) {
-                            currentBoard = board;
-                            ko.cleanNode($board[0]);
-                            ko.applyBindings(BoardViewModel(board), $board[0]);
-                            $loader.fadeOut();
-                            TimerViewModel.reset();
-                            updateDifficulty();
-                        },
+                generate = function (difficulty) {
+                    isBusy(true);
+                    currentDifficulty(difficulty);
 
-                        onSolved = function (board) {
-                            currentBoard = board;
-                            ko.cleanNode($board[0]);
-                            ko.applyBindings(BoardViewModel(board), $board[0]);
-                            $loader.fadeOut();
-                        },
+                    SudokuWorker.generate(BoardDifficulty[ko.unwrap(currentDifficulty)], onGenerated);
+                },
 
-                        updateDifficulty = function () {
-                            if (currentDifficulty == BoardDifficulty.Easy) {
-                                $difficulty.text("Easy");
-                            } else if (currentDifficulty == BoardDifficulty.Medium) {
-                                $difficulty.text("Medium");
-                            } else if (currentDifficulty == BoardDifficulty.Hard) {
-                                $difficulty.text("Hard");
-                            }
-                        };
+                //These happen after document loaded, bein safe to use selector
+                onGenerated = function (board) {
+                    currentBoard = board;
+                    ko.cleanNode($("#sudoku-board")[0]);
+                    obj.BoardViewModel = BoardViewModel(currentBoard);
+                    ko.applyBindings(obj, $("#sudoku-board")[0]); // after render knockoutjs?
+                    TimerViewModel.reset();
+                    isBusy(false);
+                },
 
+                onSolved = function (board) {
+                    currentBoard = board;
+                    obj.BoardViewModel = BoardViewModel(currentBoard);
+                    ko.cleanNode($("#sudoku-board")[0]);
+                    ko.applyBindings(obj, $("#sudoku-board")[0]);
+                    isBusy(false);
+                };
 
-                    return {
-                        init: init,
-                        generate: generate,
-                        solve: solve
-                    }
+            init();
 
-                })();
+            obj = {
+                generate: generate,
+                solve: solve,
+                restartWorker: restartWorker,
+                isVisible: isVisible,
+                isBusy: isBusy,
+                currentDifficulty: currentDifficulty,
+                TimerViewModel: TimerViewModel,
+                BoardViewModel: boardViewModel,
+            };
+            return obj;
 
-                return GameViewModel;
+        })();
+
+        return GameViewModel;
     });
