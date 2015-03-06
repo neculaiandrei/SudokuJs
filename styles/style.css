@@ -113,24 +113,27 @@ body {
     transition: all 0.5s;
 }
 
-.menu-pull {
+.menu-button {
     width: 32px;
     height: 32px;
     margin: 20px 20px;
     float: right;
+}
+
+.menu-button:hover {
+    animation: spinning-180 1s;
+}
+
+.icon-pull {
     background: url('../images/list-view-32.png');
 }
 
-.menu-editor-mode {
-    width: 32px;
-    height: 32px;
-    margin: 20px 10px;
-    float: right;
+.icon-editor-mode {
     background: url('../images/edit-8-32.png');
 }
 
-.menu-pull:hover {
-    animation: spin-menu 1s;
+.icon-normal-mode {
+    background: url('../images/square-ios-app-32.png');
 }
 
 .menu-close {
@@ -144,7 +147,7 @@ body {
 }
 
 .menu-close:hover {
-    animation: spin-menu 1s;
+    animation: spinning-180 1s;
 }
 
 .menu-hidden {
@@ -193,7 +196,7 @@ body {
     transform: scaleX(1);
 }
 
-@keyframes spin-menu {
+@keyframes spinning-180 {
     0% {
         transform: rotate(180deg);
     }
@@ -233,6 +236,49 @@ body {
 
 #sudoku-clock {
     float: right;
+}
+
+#sudoku-pause {
+    width: 32px;
+    height: 32px;
+    float: right;
+    margin-right: 20px;
+    background: url('../images/pause-32.png');
+    transition: all 0.5s;
+}
+
+#sudoku-pause:hover {
+    transform: scale(1.1);
+}
+
+#sudoku-play-wrapper {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: rgb(250, 248, 239);
+    text-align: center;
+    color: rgba(15, 25, 40, 1);
+}
+
+#sudoku-play {
+    display: inline-block;
+    width: 100px;
+    height: 100px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    margin: -50px 0 0 -50px;
+    background: url("../images/play-3-256.png");
+    background-size: cover;
+    transition: all 0.5s;
+}
+
+#sudoku-play:hover {
+    transform: scale(1.1);
 }
 
 .sudoku-cell {

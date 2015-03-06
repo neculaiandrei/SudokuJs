@@ -2,7 +2,7 @@ define(function () {
     var TimerViewModel = function () {
         var seconds = ko.observable(0),
             minutes = ko.observable(0),
-
+            updateTimeTimeout,
             formatTimeUnit = function (timeUnit) {
                 if (timeUnit < 10) {
                     return "0" + timeUnit;
@@ -14,13 +14,19 @@ define(function () {
                 return formatTimeUnit(minutes()) + ":" + formatTimeUnit(seconds());
             }),
 
-            updateTimeTimeout,
-
             reset = function () {
                 seconds(0);
                 minutes(0);
                 clearTimeout(updateTimeTimeout);
                 updateTime();
+            },
+            
+            play = function () {
+                updateTime();
+            },
+            
+            pause = function () {
+                clearTimeout(updateTimeTimeout);
             },
 
             updateTime = function () {
@@ -40,7 +46,9 @@ define(function () {
 
         return {
             time: time,
-            reset: reset
+            reset: reset,
+            play: play,
+            pause: pause
         };
     }();
 

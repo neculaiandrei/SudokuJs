@@ -1,7 +1,11 @@
+<div id="sudoku-play-wrapper" data-bind="fade: isPaused">
+    <span id="sudoku-play" data-bind="click: play"></span>
+</div>
 <h2 class="sudoku-header">
-                    <span id="sudoku-difficulty" data-bind="text: currentDifficulty">Medium</span>
-                    <span id="sudoku-clock" data-bind="text: TimerViewModel.time"></span>
-                </h2>
+    <span id="sudoku-difficulty" data-bind="text: currentDifficulty">Medium</span>
+    <span id="sudoku-clock" data-bind="text: TimerViewModel.time"></span>
+    <span id="sudoku-pause" data-bind="click: pause"></span>
+</h2>
 <table id="sudoku-board" data-bind="template: { name: 'board', data: BoardViewModel }">
 </table>
 <div class="button-container">

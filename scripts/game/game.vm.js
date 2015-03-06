@@ -8,10 +8,12 @@ define(['game/timer.vm', 'game/board.vm', 'game/SudokuWorker', 'board/board', 'b
                 currentDifficulty = ko.observable(),
                 isVisible = ko.observable(),
                 isBusy = ko.observable(),
+                isPaused = ko.observable(),
 
                 init = function () {
                     isVisible(true);
                     isBusy(true);
+                    isPaused(false);
 
                     //Generate empty board to bind 
                     //till the full board will be generated
@@ -49,6 +51,16 @@ define(['game/timer.vm', 'game/board.vm', 'game/SudokuWorker', 'board/board', 'b
 
                     SudokuWorker.generate(BoardDifficulty[ko.unwrap(currentDifficulty)], onGenerated);
                 },
+                
+                pause = function () {
+                    isPaused(true);
+                    TimerViewModel.pause();
+                },
+                
+                play = function () {
+                    isPaused(false);
+                    TimerViewModel.play();
+                }
 
                 //These happen after document loaded, bein safe to use selector
                 onGenerated = function (board) {
@@ -73,9 +85,12 @@ define(['game/timer.vm', 'game/board.vm', 'game/SudokuWorker', 'board/board', 'b
             obj = {
                 generate: generate,
                 solve: solve,
+                play: play,
+                pause: pause,
                 restartWorker: restartWorker,
                 isVisible: isVisible,
                 isBusy: isBusy,
+                isPaused: isPaused,
                 currentDifficulty: currentDifficulty,
                 TimerViewModel: TimerViewModel,
                 BoardViewModel: boardViewModel,

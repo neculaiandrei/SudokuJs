@@ -1,7 +1,7 @@
 define(function () {
     $(document).ready(function () {
         var menuHidden = $(".menu-hidden"),
-            menuPull = $(".menu-pull"),
+            menuPull = $(".menu-button.icon-pull"),
             menuClose = $(".menu-close");
 
         menuClose.click(function (e) {

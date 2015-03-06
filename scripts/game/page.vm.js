@@ -1,13 +1,24 @@
 define(['game/loader.vm', 'game/game.vm', 'game/gameEditor.vm', 'game/modal.vm'], function (LoaderViewModel, GameViewModel, GameEditorViewModel, ModalViewModel) {
 
-    var handleIsBusy = function (busy) {
+    var switchMode = function () {
+
+            if (GameViewModel.isVisible()) {
+                GameViewModel.isVisible(false);
+                GameEditorViewModel.isVisible(true);
+            } else {
+                GameEditorViewModel.isVisible(false);
+                GameViewModel.isVisible(true);
+            }
+        },
+
+        handleIsBusy = function (busy) {
             if (busy) {
                 LoaderViewModel.show("Loading...");
             } else {
                 LoaderViewModel.isVisible(false);
             }
         },
-        
+
         handleIsBlocked = function () {
             GameViewModel.restartWorker();
         };
@@ -18,9 +29,10 @@ define(['game/loader.vm', 'game/game.vm', 'game/gameEditor.vm', 'game/modal.vm']
     LoaderViewModel.show("Loading...");
 
     return {
+        switchMode: switchMode,
         LoaderViewModel: LoaderViewModel,
         GameViewModel: GameViewModel,
         GameEditorViewModel: GameEditorViewModel,
         ModalViewModel: ModalViewModel
     }
-})
+});

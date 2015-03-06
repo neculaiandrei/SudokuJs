@@ -23,8 +23,9 @@
             <a class="menu-bullet slow-anchor" href="#developement-details"></a>
             <a class="menu-bullet slow-anchor" href="#facts-details"></a>
         </span>
-        <span class="menu-pull"></span>
-        <span class="menu-editor-mode"></span>
+        <span class="menu-button icon-pull"></span>
+        <span class="menu-button icon-editor-mode" data-bind="click: switchMode, visible: GameViewModel.isVisible"></span>
+        <span class="menu-button icon-normal-mode" data-bind="click: switchMode, visible: GameEditorViewModel.isVisible"></span>
         <div class="menu-hidden">
             <span class="menu-close"></span>
             <ul>
