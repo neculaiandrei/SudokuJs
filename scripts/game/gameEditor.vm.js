@@ -1,5 +1,5 @@
 define(['game/board.vm', 'game/modal.vm', 'game/inputModal.vm', 
-        'game/SudokuWorker', 'board/boardMapper', 'board/board', 'board/boardDifficulty'],
+        'game/sudokuWorker', 'board/boardMapper', 'board/board', 'board/boardDifficulty'],
     function (BoardViewModel, ModalViewModel, InputModalViewModel, 
                SudokuWorker, BoardMapper, Board, BoardDifficulty) {
         var obj = {},

@@ -1,4 +1,4 @@
-define(['game/timer.vm', 'game/board.vm', 'game/modal.vm', 'game/SudokuWorker', 'board/board', 'board/boardDifficulty'],
+define(['game/timer.vm', 'game/board.vm', 'game/modal.vm', 'game/sudokuWorker', 'board/board', 'board/boardDifficulty'],
 
     function (TimerViewModel, BoardViewModel, ModalViewModel, SudokuWorker, Board, BoardDifficulty) {
         var GameViewModel = (function () {
