@@ -39,7 +39,7 @@ define(['./board'], function (Board) {
                     solution = Board(board);
                     solutions.push(solution);
 
-                    return settings.numberSolutions == solutions.length;
+                    return settings.numberOfSolutions == solutions.length;
                 }
 
                 possibleNumbers = cellToFill.getPossibleNumbers();

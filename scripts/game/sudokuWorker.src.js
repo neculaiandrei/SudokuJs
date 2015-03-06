@@ -7,7 +7,8 @@ require({
 
         self.onmessage = function (e) {
             var board,
-                data;
+                data,
+                solutions;
 
             data = e.data;
             switch (data.cmd) {
@@ -24,11 +25,14 @@ require({
             case ('solve'):
                 board = Board();
                 BoardMapper.mapFromString(board, data.board);
-                board = BoardSolver.solve(board)[0];
+                BoardSolver.settings.numberOfSolutions = parseInt(data.numberOfSolutions);
+                solutions = BoardSolver.solve(board);
+                board = solutions[0];
 
                 self.postMessage({
                     'cmd': data.cmd,
-                    'board': BoardMapper.mapToString(board)
+                    'board': BoardMapper.mapToString(board),
+                    'numberOfSolutions': solutions.length 
                 });
             }
         }

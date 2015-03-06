@@ -30,14 +30,15 @@ define(['game/modal.vm'], function (ModalViewModel) {
     };
 
     ko.bindingHandlers.cellBinding = {
-        init: function (element, valueAccessor) {
+        init: function (element, valueAccessor, allBindings, viewModel, bindingContext) {
             var observable = valueAccessor(),
                 cell = ko.unwrap(observable),
-                $input = $(element).find("input");
+                $input = $(element).find("input"),
+                boardViewModel = bindingContext.$parents[3];
 
             $input.val(cell.getNumber());
-
-            if (cell.getNumber()) {
+            
+            if (cell.getNumber() && boardViewModel.stylesEnabled) {
                 $(element).addClass("sudoku-cell-blocked");
                 $input.attr("readonly", true);
             }

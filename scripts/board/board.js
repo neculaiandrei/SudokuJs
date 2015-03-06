@@ -38,13 +38,28 @@ define(['cell/cell', 'utils/pubsub', 'utils/arrayExtensions'], function (Cell, P
                         cells[row][column].setNumber(board.cells[row][column].getNumber());
                     }
                 }
+            },
+            
+            isFull = function () {
+                var row,
+                    column;
+                
+                for (row = 0; row < 9; row++) {
+                    for (column = 0; column < 9; column++) {
+                        if (!cells[row][column].getNumber()) {
+                            return false;
+                        }
+                    }
+                }
+                
+                return true;
             };
 
         init();
 
         return {
             cells: cells,
-            pubsub: pubsub
+            isFull: isFull
         };
     };
 

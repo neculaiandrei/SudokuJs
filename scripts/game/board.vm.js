@@ -1,6 +1,7 @@
 define(function () {
     var BoardViewModel = function (board) {
         var rowBoxes,
+            stylesEnabled,
 
             init = function () {
                 var i,
@@ -9,6 +10,7 @@ define(function () {
                     l;
 
                 rowBoxes = [];
+                stylesEnabled = true;
 
                 for (i = 0; i < 3; i++) {
                     rowBoxes[i] = {
@@ -35,6 +37,7 @@ define(function () {
         init();
 
         return {
+            stylesEnabled: stylesEnabled,
             rowBoxes: rowBoxes
         };
     };

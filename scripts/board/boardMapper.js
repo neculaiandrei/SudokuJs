@@ -31,8 +31,10 @@ define(function() {
                 for (it = 0; it < 81; it++) {
                     if (word[it] != '.') {
                         numbers[it] = word[it];
-                    } else {
+                    } else if (word[it] == '.') {
                         numbers[it] = undefined;
+                    } else {
+                        throw "Not valid word";
                     }
                 }
 

@@ -11,7 +11,7 @@
 </head>
 
 <body>
-    <div id="loader-wrapper" data-bind="template: { name: 'loader', data: LoaderViewModel }, fade: LoaderViewModel.isVisible"></div>
+    <div id="loader-wrapper" data-bind="template: { name: 'loader', data: LoaderViewModel }, fade: isBusy"></div>
 
     <div class="menu clearfix">
         <h1><a href="">Sudoku</a></h1>
@@ -55,11 +55,11 @@
 
     <section id="rules-details">
         <h1>How to play ?</h1>
-        <p>Fill cells with numbers from 1 to </p>
-        <p>The board has 9 regions, each has 9 cel</p>
-        <p>Rule 1 - each Region consist of unique numbers (1-9</p>
-        <p>Rule 2 - each Row of the board consist of unique numbers (1-9</p>
-        <p>Rule 3 - each Column of the board consist of unique numbers (1-9</p>
+        <p>Fill cells with numbers from 1 to 9</p>
+        <p>The board has 9 regions, each has 9 cells</p>
+        <p>Rule 1 - each Region consist of unique numbers (1-9)</p>
+        <p>Rule 2 - each Row of the board consist of unique numbers (1-9)</p>
+        <p>Rule 3 - each Column of the board consist of unique numbers (1-9)</p>
     </section>
     <section id="help-details" class="alternative-section">
         <h1>How to use ?</h1>
@@ -70,8 +70,12 @@
     </section>
     <section id="editor-mode-details">
         <h1>Editor mode</h1>
-        <p>Editor mode lets you import a board</p>
-        <p>You can create your own board and export it</p>
+        <p>You can create your own board and save it</p>
+        <p>Start with a random board</p>
+        <p>Remove/add numbers while constant checking for unique solutions</p>
+        <p>Board is saved in a <a href="http://www.7sudoku.com/instructions/loading-puzzles"><u>string format</u></a> where "." means empty</p>
+        <p>Or you can load a board (using the same string format)</p>
+        <p>Solve, remove, add, load, save as you wish</p>
     </section>
     <section id="developement-details" class="alternative-section">
         <h1>How it works ?</h1>
@@ -97,8 +101,9 @@
         <a href="https://github.com/neculaiandrei/SudokuJs" class="github-icon"></a>
     </section>
 
-    <div id="modalDialog" data-bind="template: {name: 'modal', data: ModalViewModel}, fade: ModalViewModel.isVisible">
+    <div class="simple-modal" data-bind="template: {name: 'modal', data: ModalViewModel}, fade: ModalViewModel.isVisible">
     </div>
+    <div class="simple-modal" data-bind="template: {name: 'inputModal', data: InputModalViewModel}, fade: InputModalViewModel.isVisible">      </div>
 
     <script type="text/javascript" src="scripts/libs/jquery.min.js"></script>
     <script type="text/javascript" src="scripts/libs/knockout.min.js"></script>

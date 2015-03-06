@@ -1,3 +1,12 @@
-<div>
-    <h1>Game Editor rulllz</h1>
+<table id="sudoku-editor-board" data-bind="template: { name: 'board', data: BoardViewModel }">
+</table>
+
+<div class="button-container">
+    <button class="bg-red" data-bind="click: solve">Solve</button>
+    <button class="bg-green" data-bind="click: check">Check</button>
+    <button class="bg-blue" data-bind="click: random">Random</button>
+</div>
+<div class="button-container">
+    <button class="bg-white" data-bind="click: load">Load</button>
+    <button class="bg-yellow" data-bind="click: save">Save</button>
 </div>

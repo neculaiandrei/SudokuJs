@@ -1,4 +1,4 @@
 <div>
-            <p data-bind="text: content"></p>
-            <button class="bg-white" data-bind="click: close">Close</button>
+    <p data-bind="text: content, css: { 'selectable-text': isTextSelectable }"></p>
+    <button class="bg-white" data-bind="click: close">Close</button>
 </div>

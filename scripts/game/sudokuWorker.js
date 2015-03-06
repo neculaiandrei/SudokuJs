@@ -25,18 +25,20 @@ define(['board/board', 'board/boardMapper'],
                     });
                 },
 
-                solve = function (board, callback) {
+                solve = function (board, numberOfSolutions, callback) {
                     isBusy = true;
                     onSolved = callback;
                     worker.postMessage({
                         'cmd': 'solve',
+                        'numberOfSolutions': numberOfSolutions,
                         'board': BoardMapper.mapToString(board)
                     });
                 },
 
                 messageHandler = function (e) {
                     var board,
-                        data;
+                        data,
+                        numberOfSolutions;
 
                     data = e.data;
                     board = Board();
@@ -49,7 +51,8 @@ define(['board/board', 'board/boardMapper'],
                         break;
                     case ('solve'):
                         isBusy = false;
-                        onSolved(board);
+                        numberOfSolutions = parseInt(data.numberOfSolutions);
+                        onSolved(board, numberOfSolutions);
                         break;
                     }
                 };

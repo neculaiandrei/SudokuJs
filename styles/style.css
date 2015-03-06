@@ -116,7 +116,7 @@ body {
 .menu-button {
     width: 32px;
     height: 32px;
-    margin: 20px 20px;
+    margin: 20px 10px;
     float: right;
 }
 
@@ -385,6 +385,10 @@ section h1 {
     text-align: center;
 }
 
+section a {
+    color: rgb(15, 25, 40) !important;
+}
+
 .alternative-section {
     color: rgb(250, 248, 239);
     background: rgb(15, 25, 40);
@@ -506,7 +510,7 @@ section h1 {
 /* MODAL DIALOG */
 /****************/
 
-#modalDialog {
+.simple-modal {
     position: fixed;
     top: 0;
     right: 0;
@@ -516,13 +520,28 @@ section h1 {
     z-index: 1000;
 }
 
-#modalDialog > div {
+.simple-modal p{
+    word-wrap: break-word;
+}
+
+.simple-modal input{
+    border: 0;
+    outline: 0;
+    margin: 10px 5px;
+    background: rgb(250, 248, 239);
+    font-family: Squares;
+    font-size: 14px;
+    color: rgb(15, 25, 40);
+    text-align: center;
+}
+
+.simple-modal > div {
     position: absolute;
     left: 50%;
     top: 50%;
     
-    width: 200px;
-    margin: -100px 0 0 -100px;
+    width: 250px;
+    margin: -125px 0 0 -125px;
     padding: 10px;
     
     color: rgb(250, 248, 239);
@@ -572,4 +591,13 @@ section h1 {
     height: 48px;
     display: inline-block;
     background: url("../images/github-9-48%20(1).png");
+}
+
+.selectable-text {
+     -webkit-touch-callout: text;
+    -webkit-user-select: text;
+    -khtml-user-select: text;
+    -moz-user-select: text;
+    -ms-user-select: text;
+    user-select: text;
 }

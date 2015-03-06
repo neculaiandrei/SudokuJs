@@ -1,8 +1,10 @@
 define(function () {
-    var ModalViewModel = function (element) {
-        var isVisible = ko.observable(false),
-            isTextSelectable = ko.observable(false),
+    var InputModalViewModel = function (element) {
+        var obj = {},
+            isVisible = ko.observable(false),
             content = ko.observable(),
+            input = ko.observable(),
+            inputHandler = function () {},
             
             show = function(text) {
                 content(text);
@@ -11,18 +13,21 @@ define(function () {
             
             close = function() {
                 isVisible(false);
-                isTextSelectable(false);
+                obj.inputHandler(input());
             };
 
-        return {
+        obj = {
             show: show,
             close: close,
             isVisible: isVisible,
-            isTextSelectable: isTextSelectable,
             content: content,
+            input: input,
+            inputHandler: inputHandler
         };
+        
+        return obj;
     
     }();
 
-    return ModalViewModel;
+    return InputModalViewModel;
 });

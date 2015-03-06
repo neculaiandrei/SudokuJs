@@ -1,6 +1,10 @@
-define(['game/loader.vm', 'game/game.vm', 'game/gameEditor.vm', 'game/modal.vm'], function (LoaderViewModel, GameViewModel, GameEditorViewModel, ModalViewModel) {
+define(['game/loader.vm', 'game/game.vm', 'game/gameEditor.vm', 'game/modal.vm', 'game/inputModal.vm', 'game/SudokuWorker'], function (LoaderViewModel, GameViewModel, GameEditorViewModel, ModalViewModel, InputModalViewModel, SudokuWorker) {
 
-    var switchMode = function () {
+    var isBusy = ko.computed(function () {
+            return GameViewModel.isBusy() || GameEditorViewModel.isBusy();
+        }),
+        
+        switchMode = function () {
 
             if (GameViewModel.isVisible()) {
                 GameViewModel.isVisible(false);
@@ -8,31 +12,31 @@ define(['game/loader.vm', 'game/game.vm', 'game/gameEditor.vm', 'game/modal.vm']
             } else {
                 GameEditorViewModel.isVisible(false);
                 GameViewModel.isVisible(true);
-            }
-        },
-
-        handleIsBusy = function (busy) {
-            if (busy) {
-                LoaderViewModel.show("Loading...");
-            } else {
-                LoaderViewModel.isVisible(false);
+                GameViewModel.generate("Medium");
             }
         },
 
         handleIsBlocked = function () {
-            GameViewModel.restartWorker();
+            SudokuWorker.abort();
+            SudokuWorker.start();
+            
+            //allow time for worker to load
+            setTimeout(function () {
+                GameViewModel.isBusy(false);
+                GameEditorViewModel.isBusy(false);
+            }, 1000);
         };
 
-    GameViewModel.isBusy.subscribe(handleIsBusy);
     LoaderViewModel.isBlocked.subscribe(handleIsBlocked);
-
     LoaderViewModel.show("Loading...");
 
     return {
+        isBusy: isBusy,
         switchMode: switchMode,
         LoaderViewModel: LoaderViewModel,
         GameViewModel: GameViewModel,
         GameEditorViewModel: GameEditorViewModel,
-        ModalViewModel: ModalViewModel
+        ModalViewModel: ModalViewModel,
+        InputModalViewModel: InputModalViewModel
     }
 });

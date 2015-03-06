@@ -27,7 +27,7 @@ define(['./boardSolver','./board'], function (BoardSolver, Board) {
                 finalBoard = Board();
                 fillFirstRowWithValues(emptyBoard);
                 
-                BoardSolver.settings.numberSolutions = 1;
+                BoardSolver.settings.numberOfSolutions = 1;
                 fullBoard = BoardSolver.solve(emptyBoard)[0];
                 
             },
@@ -82,7 +82,7 @@ define(['./boardSolver','./board'], function (BoardSolver, Board) {
 
                     cell.setNumber();
 
-                    BoardSolver.settings.numberSolutions = 2;
+                    BoardSolver.settings.numberOfSolutions = 2;
 
                     solutionsCount = BoardSolver.solve(fullBoard).length;
 
