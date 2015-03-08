@@ -1,4 +1,4 @@
-define(['game/loader.vm', 'game/game.vm', 'game/gameEditor.vm', 'game/modal.vm', 'game/inputModal.vm', 'game/sudokuWorker'], function (LoaderViewModel, GameViewModel, GameEditorViewModel, ModalViewModel, InputModalViewModel, SudokuWorker) {
+define(['./loader.vm', './game.vm', './gameEditor.vm', './modal.vm', './inputModal.vm', '.././sudokujs/sudokuWorker'], function (LoaderViewModel, GameViewModel, GameEditorViewModel, ModalViewModel, InputModalViewModel, SudokuWorker) {
 
     var isBusy = ko.computed(function () {
             return GameViewModel.isBusy() || GameEditorViewModel.isBusy();

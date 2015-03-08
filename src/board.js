@@ -1,4 +1,4 @@
-define(['cell/cell', 'utils/pubsub', 'utils/arrayExtensions'], function (Cell, PubSub, _) {
+define(['./cell', './pubsub', './arrayExtensions'], function (Cell, PubSub, _) {
 
     var Board = function (otherBoard) {
         var cells,

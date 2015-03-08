@@ -1,4 +1,4 @@
-define(['game/modal.vm'], function (ModalViewModel) {
+define(['./modal.vm'], function (ModalViewModel) {
     var validateValue = function (cell, newValue) {
         var intValue;
 

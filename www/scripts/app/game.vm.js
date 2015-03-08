@@ -1,4 +1,5 @@
-define(['game/timer.vm', 'game/board.vm', 'game/modal.vm', 'game/sudokuWorker', 'board/board', 'board/boardDifficulty'],
+define(['./timer.vm', './board.vm', './modal.vm', 
+        '.././sudokujs/sudokuWorker', '.././sudokujs/board', '.././sudokujs/boardDifficulty'],
 
     function (TimerViewModel, BoardViewModel, ModalViewModel, SudokuWorker, Board, BoardDifficulty) {
         var GameViewModel = (function () {
@@ -60,7 +61,7 @@ define(['game/timer.vm', 'game/board.vm', 'game/modal.vm', 'game/sudokuWorker', 
                             ModalViewModel.show("Confucius: 'I hate cheaters'");
                         } else {
                             TimerViewModel.pause();
-                            ModalViewModel.show("Congrats! Awesome job");
+                            ModalViewModel.show("Congrats! Awesome job"); //on play the time should not resume
                         }
                         
                     } else {

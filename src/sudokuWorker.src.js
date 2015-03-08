@@ -1,8 +1,7 @@
-importScripts('../libs/require.min.js');
-
+importScripts('../examples/require.js'); //path to require js relative to current folder
 require({
-        baseUrl: "../"
-    }, ["require", "board/boardGenerator", "board/boardSolver", 'board/boardMapper', 'board/board'],
+        baseUrl: "./"
+    }, ["require", "./boardGenerator", "./boardSolver", './boardMapper', './board'],
     function (require, BoardGenerator, BoardSolver, BoardMapper, Board) {
 
         self.onmessage = function (e) {

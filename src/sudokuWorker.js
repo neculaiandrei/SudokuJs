@@ -1,4 +1,4 @@
-define(['board/board', 'board/boardMapper'],
+define(['./board', './boardMapper'],
     function (Board, BoardMapper) {
         var SudokuWorker = (function (src) {
             var worker,
@@ -64,7 +64,7 @@ define(['board/board', 'board/boardMapper'],
                 generate: generate,
                 solve: solve,
             }
-        })("scripts/game/sudokuWorker.src.js");
+        })("src/sudokuWorker.src.js"); //path to sudokuWorker.src.js from root folder
 
         return SudokuWorker;
     });

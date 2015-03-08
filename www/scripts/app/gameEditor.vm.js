@@ -1,5 +1,5 @@
-define(['game/board.vm', 'game/modal.vm', 'game/inputModal.vm', 
-        'game/sudokuWorker', 'board/boardMapper', 'board/board', 'board/boardDifficulty'],
+define(['./board.vm', './modal.vm', './inputModal.vm', 
+        '.././sudokujs/sudokuWorker', '.././sudokujs/boardMapper', '.././sudokujs/board', '.././sudokujs/boardDifficulty'],
     function (BoardViewModel, ModalViewModel, InputModalViewModel, 
                SudokuWorker, BoardMapper, Board, BoardDifficulty) {
         var obj = {},
