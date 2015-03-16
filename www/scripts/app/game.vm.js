@@ -1,5 +1,5 @@
 define(['./timer.vm', './board.vm', './modal.vm', 
-        '.././sudokujs/sudokuWorker', '.././sudokujs/board', '.././sudokujs/boardDifficulty'],
+        'sudokujs/sudokuWorker', 'sudokujs/board', 'sudokujs/boardDifficulty'],
 
     function (TimerViewModel, BoardViewModel, ModalViewModel, SudokuWorker, Board, BoardDifficulty) {
         var GameViewModel = (function () {

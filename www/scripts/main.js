@@ -1,3 +1,10 @@
+require.config({
+    paths: {
+        app: 'app',
+        sudokujs: 'sudokujs',
+    }
+});
+
 require(['app/page.vm', 'app/effects', 'app/ko.customBindings'], function (PageViewModel) {
     
     infuser.defaults.templateUrl = "www/templates";

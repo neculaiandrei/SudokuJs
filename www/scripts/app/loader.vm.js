@@ -1,4 +1,4 @@
-define(['.././sudokujs/arrayExtensions'], function () {
+define(['sudokujs/arrayExtensions'], function () {
     var LoaderViewModel = function () {
         var numbers = [],
             content = ko.observable(),
